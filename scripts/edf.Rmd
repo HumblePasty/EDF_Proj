@@ -1,0 +1,790 @@
+---
+title: "EDF data wrangling and analysis"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r set up workspace}
+setwd('G:/My Drive/SEAS/EDF')
+library(tidyverse)
+library(lme4)
+library(car)
+library(rcompanion)
+library(ggeffects)
+library(emmeans)
+library(ggpubr)
+```
+
+```{r soil}
+#prep soil C data
+
+soil <- read.csv('soil.csv')
+
+#Remove data from sites we are not interested in
+sites <- c('IAAMBRUN','KBS_RG','NAEW.WS109','NAEW.WS111','NAEW.WS113','NAEW.WS118')
+
+soil <- soil %>%
+  filter(!(Site %in% sites))
+
+#remove data from soil depths we are not interested in
+sections <- c('60to90','90to120','120to150','150to180',
+              '60to100','60_90')
+soil <- soil %>%
+  filter(!(Section %in% sections))
+
+soil <- soil %>%
+  filter(!(Section == "Deep" & Top_depth >= 60))
+
+soil <- soil %>%
+  filter(!(Section == "Middle" & Top_depth >= 60))
+
+#calculate the length of each soil core
+soil <- soil %>%
+  mutate(Section_length = case_when(Bottom_depth > 60 ~ 
+                                      60 - Top_depth,
+                                    .default = Section_length))
+
+
+#calculate the carbon stocks and nitrogen stocks in each soil core
+stocks <- soil %>%
+  mutate(C_stock = C_percent * BD * Section_length,
+         N_stock = N_percent * BD * Section_length) %>%
+  group_by(Site, Year, Plot, Core) %>%
+  summarize(C_stock = sum(C_stock),
+            N_stock = sum(N_stock)) 
+
+
+
+#if there are multiple cores taken at an experimental unit within a given year, average them
+averages <- stocks %>%
+  group_by(Site, Plot, Year) %>%
+  summarise(C_stock = mean(C_stock),
+            N_stock = mean(N_stock))
+
+
+#What is the maximum SOC observed for a given experimental unit?
+#What years are present for each experimental unit?
+#What is the breadth of time covered for each experimental unit?
+years <- averages %>%
+  group_by(Site, Plot) %>%
+  summarize(Year_max = max(Year),
+            Year_min = min(Year),
+            time = Year_max - Year_min)
+
+maximums <- averages %>%
+  group_by(Site) %>%
+  summarize(SOC_max_obs = max(C_stock, na.rm = TRUE),
+            SON_max_obs = max(N_stock, na.rm = TRUE))
+
+#combine averages, years, and maximums datasets
+maximumsyears <- left_join(maximums, years, by = c('Site'))
+
+stocks <- left_join(averages, maximumsyears, by = c("Site", "Plot"))
+
+#calculate change in soil C for each plot and filter out data so that we only include data from the most recent year
+stocks <- stocks %>%
+  mutate(dSOC = (C_stock[Year == Year_max] - C_stock[Year == Year_min])/time) %>%
+  filter(Year == Year_max)
+```
+
+
+```{r Nitrogen balance, warning=FALSE}
+nbal <- read.csv('nbal.csv') 
+
+nbal$N_input <- as.numeric(nbal$N_input)
+nbal$N_output <- as.numeric(nbal$N_output)
+
+#combine nitrogen input and output data with soil carbon stock data
+meshed <- left_join(nbal, stocks, by = c("Site", "Plot"))
+
+#calculate the average N input, output, and balance at each experimental unit
+mean_nbal <- meshed  %>%
+  filter(Year.x >= Year_min & Year.x <= Year_max) %>%
+    mutate(N_balance = N_input - N_output) %>%
+  group_by(Site, Plot) %>%
+  summarize(avg_N_balance = mean(N_balance, na.rm = TRUE),
+            avg_N_input = mean(N_input, na.rm = TRUE),
+            avg_N_output = mean(N_output, na.rm = TRUE)) %>%
+  ungroup()
+
+#combine mean Nitrogen calculations with soil carbon stock data
+# only include data from plots where we have multiple timepoints
+meshed <- full_join(meshed, mean_nbal, by = c("Site", "Plot")) %>%
+  filter(Year.x == Year_max & time != 0)
+
+#remove unnecessary columns from the dataset
+meshed <- meshed %>%
+  select(-Crop, -Crop_planting_date, -Crop_harvest_date, -N_input, -N_output,
+         -Cover_crop_1, -Cover_crop_1_planting_date, -Cover_crop_1_termination_date,
+         -Cover_crop_2, -Cover_crop_2_planting_date, -Cover_crop_2_termination_date,
+         -Year.y)
+```
+
+
+```{r Rotational complexity index}
+
+#prep for Rotational Complexity Index calculations
+#make sure that crops are consistently named throughout the data
+rci <- read.csv('nbal.csv') %>%
+  mutate(Crop = ifelse(Crop == "Zea mays (Corn)", "CORN",
+                        ifelse(Crop == "Glycine max (Soybean)", "SOY",
+                               ifelse(Crop == "Triticum aestivum (Wheat)", "WHEAT",
+                                      Crop))))
+
+#this function calculates RCI
+RCIcalc <- function(r) {
+# get a list of the sites of the dataset
+sites <- unique(r$Site)
+
+#create an empty data frame to house our RCI calculations
+diversity <- data.frame(Site = character(),
+                        Plot = character(),
+                 RCI = double())
+
+#list of values in our dataset that are perennials
+perennials <- c("Medicago sativa (Alfalfa)")
+fallow <- c("FALLOW","WHEAT")
+
+
+#this code will repeat for each field in the list of fields
+for (site in sites) {
+  
+  #isolate the data from a single field
+  temp <- rci %>%
+    filter(Site == site)
+  
+  #get a list of fields
+  fields <- temp$Plot
+  
+  for (field in fields) {
+    
+    temp2 <- temp %>%
+      filter(Plot == field) 
+  
+  #initialize components of the RCI equation
+  crops <- c()
+  idx <- 1
+  T.1 <- 0
+  T.2 <- 0
+  T.P <- 0
+  T.C <- 0
+  N <- 0
+
+    #get a list of years
+  years <- temp2$Year
+  
+  #only final five years
+  maxyr <- max(temp2$Year)
+  temp2 <- temp2 %>%
+    filter(Year > (maxyr - 5))
+  years <- temp2$Year
+  
+  #this will iterate through the years and add up values for T.1, T.2, T.P, and N
+  for (year in years) {
+    # the following measurements only make sense for year 1
+    if (idx == 1) {
+      # add the crop to the list of crops if not fallow
+      if (!(temp2$Crop[idx] %in% fallow)) {
+        N = N + 1
+        crops <- append(crops, temp2$Crop[idx])
+      }
+      if (!(temp2$Cover_crop_1[idx] %in% fallow)) {
+        N = N + 1
+        T.C = T.C + 1
+        crops <- append(crops, temp2$Cover_crop_1[idx])
+      }
+      #move on to the next year
+      idx = idx + 1
+    }
+    else {
+    # the following measurements only make sense for year 2
+    if (idx == 2) {
+      #is the crop planted this year different from last year?
+      if (temp2$Crop[idx] != temp2$Crop[idx-1] & !(temp2$Crop[idx] %in% fallow) & !(temp2$Crop[idx-1] %in% fallow)) {
+        T.1 <- T.1 + 1
+      }
+
+      #has overall crop diversity increased?
+      #if crop is new, add it to the list of crops we've seen so far
+      if (!(temp2$Crop[idx] %in% fallow) & !(temp2$Crop[idx] %in% crops)) {
+        N = N + 1
+       crops <- append(crops, temp2$Crop[idx])
+      }
+      
+      #is there a cover crop?
+      if (!(temp2$Cover_crop_1[idx] %in% fallow)) {
+        T.C <- T.C + 1
+      }
+       #has overall crop diversity increased?
+      #if cover crop is new, add it to the list of crops we've seen so far
+      if (!(temp2$Cover_crop_1[idx] %in% fallow) & !(temp2$Cover_crop_1[idx] %in% crops)) {
+        N = N + 1
+       crops <- append(crops, temp2$Cover_crop_1[idx])
+      }
+      
+      #accounting for perennials
+      if (temp2$Crop[idx] == temp2$Crop[idx-1] & temp2$Crop[idx] %in% perennials) {
+        T.P = T.P + 1
+      }
+      
+      
+     #move on to the next year
+      idx = idx + 1
+    }
+    
+    else {
+    #measurements from year 3 onward
+    if (idx > 2) {
+      #is the crop planted this year different from last year?
+      if (temp2$Crop[idx] != temp2$Crop[idx-1] & !(temp2$Crop[idx] %in% fallow) & !(temp2$Crop[idx-1]        %in% fallow)) {
+        T.1 <- T.1 + 1
+      } 
+      #is the crop planted this year different from the crop planted two years ago?
+      if (temp2$Crop[idx] != temp2$Crop[idx-2] & !(temp2$Crop[idx] %in% fallow) & !(temp2$Crop[idx-2]        %in% fallow)) {
+        T.2 <- T.2 + 1
+      }
+      #has overall crop diversity increased?
+      #if crop is new, add it to the list of crops we've seen so far
+      if (!(temp2$Crop[idx] %in% fallow) & !(temp2$Crop[idx] %in% crops)) {
+        N = N + 1
+        crops <- append(crops, temp2$Crop2[idx])
+      }
+      
+            
+      #is there a cover crop?
+      if (!(temp2$Cover_crop_1[idx] %in% fallow)) {
+        T.C <- T.C + 1
+      }
+       #has overall crop diversity increased?
+      #if cover crop is new, add it to the list of crops we've seen so far
+      if (!(temp2$Cover_crop_1[idx] %in% fallow) & !(temp2$Cover_crop_1[idx] %in% crops)) {
+        N = N + 1
+       crops <- append(crops, temp2$Cover_crop_1[idx])
+      }
+      
+      #accounting for perennials
+      if (temp2$Crop[idx] == temp2$Crop[idx-1] & temp2$Crop[idx] %in% perennials) {
+        T.P = T.P + 1
+      }
+      #move on to the next year
+      idx = idx + 1
+    }
+    }
+    }
+  }
+  
+  #calculate the RCI
+  RCI <- sqrt(((T.1 + T.2 + T.P)/2 + T.C) * N)
+  
+  #add it to the diversity dataframe
+  new.row <- data.frame(Site = as.character(site),
+                        Plot = as.character(field),
+                        RCI = RCI)
+  diversity <- dplyr::bind_rows(diversity, new.row)
+  
+  
+  }  
+}
+
+return(diversity)
+
+}
+```
+
+```{r Combining RCI data with C stocks data}
+
+#Calculate RCI for each experimental unit
+#This may take a few minutes
+df <-RCIcalc(rci)
+
+df <- df %>%
+  group_by(Site, Plot) %>%
+  summarize(RCI = mean(RCI))
+
+
+#join RCI data with Nbal + Cstock data
+rci.df <- left_join(meshed, df, by = c("Site", "Plot"))
+
+
+#remove missing data
+rci.df <- rci.df %>%
+  filter(!is.na(C_stock) &
+         !is.na(avg_N_balance) &
+         !is.na(RCI))
+```
+
+```{r treatments}
+
+#read in management data and add those factors to the RCI, C stock, and Nbalance data
+treats <- read.csv('treat.csv')
+rci.treats <- left_join(rci.df, treats, by = c("Site", "Plot"))
+
+```
+
+
+```{r calculate N requirement for soil C change}
+
+
+
+#How much does soil C change for each unit of N input?
+rci.treats <- rci.treats %>%
+  mutate(N_dSOC = (dSOC * time)/((avg_N_input)*time))
+
+
+#make sure proper cover crop treatments and tillage treatments are being analyzed
+rci.treats.cc <- rci.treats %>%
+  filter(Cover.crop == "yes" |
+           Cover.crop == "no")
+
+rci.treats.till <- rci.treats.cc %>%
+  filter(Tillage == "yes" |
+           Tillage == "no")
+```
+
+```{r RCI vs soil C}
+# How does RCI correlate with soil C?
+# It doesn't
+mod <- lmer(C_stock ~ RCI + Soil.type + (1|Site), data = rci.treats.cc)
+summary(mod)
+
+Anova(mod)
+
+
+#check assumptions
+plotNormalHistogram(residuals(mod))
+
+plot(fitted(mod),
+     residuals(mod))
+
+```
+
+
+```{r final SOC vs soil type}
+
+
+# How does C change with soil type?
+# It's an important factor
+mod <- lmer(C_stock ~  Soil.type + (1|Site), data = rci.treats.cc)
+summary(mod)
+
+Anova(mod)
+
+#check assumptions
+plotNormalHistogram(residuals(mod))
+
+plot(fitted(mod),
+     residuals(mod))
+
+
+#visualization
+
+rci.treats.cc$C_stock100 <- rci.treats.cc$C_stock * 100
+
+ggbarplot(rci.treats.cc, x="Soil.type", y="C_stock100", add = "mean_se", 
+          fill = "lightgreen", sort.val = "asc") +
+  coord_flip() +
+  labs(x = "Soil Texture Classification",
+         y = expression('C stock (Mg ha'^-1*")")) +
+  theme_bw(base_size = 18)
+
+#ggsave('texture.png', plot = last_plot(),
+ #      width = 6, height = 4)
+
+```
+
+```{r final SOC vs diversity}
+
+
+# How does RCI correlate with C?
+# It doesn't
+mod <- lmer(C_stock ~ RCI + Soil.type + (1|Site), data = rci.treats.cc)
+summary(mod)
+
+Anova(mod)
+
+#check assumptions
+plotNormalHistogram(residuals(mod))
+
+plot(fitted(mod),
+     residuals(mod))
+
+```
+
+
+```{r SOC cover crop}
+
+
+# How does C stock change with cover crop?
+# It doesn't
+mod <- lmer(C_stock ~ Cover.crop + Soil.type + (1|Site), data = rci.treats.cc)
+summary(mod)
+
+Anova(mod)
+
+
+#check assumptions
+plotNormalHistogram(residuals(mod))
+
+plot(fitted(mod),
+     residuals(mod))
+
+```
+
+```{r SOC vs tillage}
+
+
+# How does C stock change with tillage?
+# It doesn't
+mod <- lmer(C_stock ~ Tillage + Soil.type + (1|Site), data = rci.treats.till)
+summary(mod)
+
+Anova(mod)
+
+
+#check assumptions
+plotNormalHistogram(residuals(mod))
+
+plot(fitted(mod),
+     residuals(mod))
+
+```
+
+
+
+```{r SOC vs N input}
+
+
+# How does C stock change with N input?
+#It increases
+mod <- lmer(C_stock ~ avg_N_input + Soil.type  + (1|Site), data = rci.treats.cc)
+summary(mod)
+
+Anova(mod)
+
+
+#check assumptions
+plotNormalHistogram(residuals(mod))
+
+plot(fitted(mod),
+     residuals(mod))
+
+
+#visualization
+pred <- ggpredict(mod, terms = c('avg_N_input'))
+
+ggplot(rci.treats.cc, aes(x = avg_N_input, y = (C_stock100))) +
+  geom_point(size = 1.5) +
+  geom_line(data = pred, aes(x = x, y = predicted*100), linewidth = 1.5) +
+  labs(y = expression('C stock (Mg ha'^-1*")"),
+       x = expression("Average N input (kg N ha"^-1*" yr"^-1*")")) +
+  theme_bw(base_size = 18)
+
+#ggsave('CstockvsNinput.png', plot = last_plot(),
+ #      width = 6, height = 4)
+```
+
+```{r SOC vs N balance}
+
+
+# How does SOC change with N balance?
+# It doesn't
+mod <- lmer(C_stock ~ avg_N_balance  + Soil.type  + (1|Site), data = rci.treats.cc)
+summary(mod)
+
+Anova(mod)
+
+#check assumptions
+plotNormalHistogram(residuals(mod))
+
+plot(fitted(mod),
+     residuals(mod))
+
+
+```
+
+
+```{r dSOC vs RCI}
+
+
+#remove sites that should not be included from this analysis
+rci.treats.cc <- rci.treats.cc %>%
+  filter(Site != "KBS_MCSE" &
+           Site != "ARL_WICST")
+#remove outlier
+rci.treats.cc <- rci.treats.cc %>%
+  filter(dSOC > -1)
+
+rci.treats.cc$dSOC100<- rci.treats.cc$dSOC * 100
+
+# How does dSOC change with RCI?
+# It decreases
+mod <- lmer(dSOC ~ RCI + Soil.type + (1|Site), data = rci.treats.cc)
+summary(mod)
+
+Anova(mod)
+
+
+#check assumptions
+plotNormalHistogram(residuals(mod))
+
+plot(fitted(mod),
+     residuals(mod))
+
+#visualization
+pred <- ggpredict(mod, terms = c('RCI'))
+
+
+ggplot(rci.treats.cc, aes(x = RCI, y = (dSOC100))) +
+  geom_point(size = 1.5) +
+  labs(y = expression(Delta*"SOC (Mg ha"^-1*" yr"^-1*")")) +
+  theme_bw(base_size = 18) +
+  geom_line(data = pred, aes(x = x, y = predicted*100), linewidth = 1.5) 
+
+#ggsave('dSOCvsRCI.png', plot = last_plot(),
+ #      width = 6, height = 4)
+
+
+```
+
+```{r dSOC vs cover crop}
+
+# How does dSOC change with cover crop?
+# It doesn't
+mod <- lmer(dSOC ~ Cover.crop + Soil.type + (1|Site), data = rci.treats.cc)
+summary(mod)
+
+Anova(mod)
+
+
+#check assumptions
+plotNormalHistogram(residuals(mod))
+
+plot(fitted(mod),
+     residuals(mod))
+
+```
+
+
+```{r dSOC vs tillage}
+
+rci.treats.till <- rci.treats.cc %>%
+  filter(Tillage != ".")
+
+# How does dSOC change with tillage?
+# It doesn't
+mod <- lmer(dSOC ~ Tillage + Soil.type + (1|Site), data = rci.treats.till)
+summary(mod)
+
+Anova(mod)
+
+
+#check assumptions
+plotNormalHistogram(residuals(mod))
+
+plot(fitted(mod),
+     residuals(mod))
+
+
+```
+
+```{r dSOC vs N input}
+
+
+
+# How does dSOC change with N input?
+# It increases
+mod <- lmer(dSOC ~  avg_N_input + Soil.type + (1|Site), data = rci.treats.cc)
+summary(mod)
+
+Anova(mod)
+
+
+#check assumptions
+plotNormalHistogram(residuals(mod))
+
+plot(fitted(mod),
+     residuals(mod))
+
+
+#visualization
+pred <- ggpredict(mod, terms = c('avg_N_input'))
+
+
+ggplot(rci.treats.cc, aes(x = avg_N_input, y = (dSOC))) +
+  geom_point(size = 1.5) +
+  labs(x = expression("Average N input (kg N ha"^-1*" yr"^-1*")"),
+       y = expression(Delta*"SOC (Mg ha"^-1*" yr"^-1*")")) +
+  theme_bw(base_size = 18) +
+  geom_line(data = pred, aes(x = x, y = predicted), linewidth = 1.5) 
+
+#ggsave('dSOCvsNinput.png', plot = last_plot(),
+ #      width = 6, height = 4)
+
+```
+
+
+```{r N dSOC and RCI}
+
+
+
+# How does NdSOC change with RCI?
+# It doesn't
+mod <- lmer((N_dSOC)^(1/3) ~  RCI + Soil.type + (1|Site), data = rci.treats.cc)
+summary(mod)
+
+Anova(mod)
+
+#check assumptions
+plotNormalHistogram(residuals(mod))
+
+plot(fitted(mod),
+     residuals(mod))
+
+
+```
+
+
+
+```{r N dSOC and cover crop}
+
+#filter out outlier
+rci.treats.NdSOC <- rci.treats.cc %>%
+  filter(N_dSOC > -.006)
+
+# How does NdSOC change with cover crop?
+# N dSOC is higher with cover crops
+mod <- lmer((N_dSOC)^(1/3) ~  Cover.crop + Soil.type + (1|Site), data = rci.treats.NdSOC)
+summary(mod)
+
+Anova(mod)
+
+
+#check assumptions
+plotNormalHistogram(residuals(mod))
+
+plot(fitted(mod),
+     residuals(mod))
+
+
+
+#visualization
+
+rci.treats.NdSOC$N_dSOC100 <- rci.treats.NdSOC$N_dSOC * 100
+
+ggbarplot(rci.treats.NdSOC, x = "Cover.crop", y = "N_dSOC100", add = "mean_se",
+          fill = "lightgreen") +
+  labs(x = "Cover crop",
+       y = expression(Delta*"SOC kg"^-1*" N")) +
+  coord_flip() +
+  theme_bw(base_size = 18)
+
+#ggsave('covercropvsNdSOC.png', plot = last_plot(),
+ #      width = 6, height = 4)
+```
+
+
+
+
+```{r NdSOC and tillage}
+
+#remove outlier
+rci.treats.NdSOC.till <- rci.treats.NdSOC %>%
+  filter(N_dSOC > -.006 &
+           Tillage != ".")
+
+# How does NdSOC change with tillage?
+# No-till gets more C per unit N than tillage
+mod <- lmer(N_dSOC^(1/3) ~  Tillage  + Soil.type + (1|Site), data = rci.treats.NdSOC.till)
+summary(mod)
+
+Anova(mod)
+
+
+#check assumptions
+plotNormalHistogram(residuals(mod))
+
+plot(fitted(mod),
+     residuals(mod))
+
+
+#visualization
+ggbarplot(rci.treats.NdSOC.till, x = "Tillage", y = "N_dSOC100", 
+          add = "mean_se", fill = "lightgreen") +
+  labs(x = "Tillage",
+       y = expression(Delta*"SOC kg"^-1*" N")) +
+  coord_flip() +
+  theme_bw(base_size = 18)
+
+#ggsave('tillagevsNdSOC.png', plot = last_plot(),
+ #      width = 6, height = 4)
+```
+
+
+
+```{r NdSOC vs N input}
+
+# How does Ndsoc change with N input?
+# It decreases, less bang for your buck with each unit N
+mod <- lmer((N_dSOC100)^(1/3) ~  avg_N_input  + Soil.type + (1|Site), data = rci.treats.NdSOC)
+summary(mod)
+
+Anova(mod)
+
+
+#check assumptions
+plotNormalHistogram(residuals(mod))
+
+plot(fitted(mod),
+     residuals(mod))
+
+
+#visualization
+pred <- ggpredict(mod, terms = c("avg_N_input"))
+
+
+ggplot(rci.treats.NdSOC, aes(x = avg_N_input, y = (N_dSOC100))) +
+  geom_point() +
+  geom_line(data = pred, aes(x = x, y = (predicted)^3), size = 1.5) +
+  labs(x = expression("Average N input (kg N ha"^-1*" yr"^-1*")"),
+       y = expression(Delta*"SOC kg"^-1*" N")) +
+  theme_bw(base_size = 18) 
+
+#ggsave('NdSOCvsNinput.png', plot = last_plot(),
+ #      width = 6, height = 4)
+```
+
+
+
+```{r Nbal and RCI}
+
+
+# How does Nbal change with RCI?
+# It decreases, more diverse rotations are less susceptible to losses
+mod <- lmer(avg_N_balance ~  RCI + Soil.type  + (1|Site), data = rci.treats.cc)
+summary(mod)
+
+Anova(mod)
+
+
+#check assumptions
+plotNormalHistogram(residuals(mod))
+
+plot(fitted(mod),
+     residuals(mod))
+
+# visualization
+pred <- ggpredict(mod, terms = c('RCI'))
+
+
+ggplot(rci.treats.cc, aes(x = RCI, y = (avg_N_balance))) +
+  geom_point() +
+  geom_line(data = pred, aes(x = x, y = predicted), linewidth = 1.5) +
+  labs(x = "RCI",
+       y = expression("N balance (kg N ha"^-1*" yr"^-1*")")) +
+  theme_bw(base_size = 18) 
+
+ggsave('RCIvsNbal.png', plot = last_plot(),
+       width = 6, height = 4)
+```
+
