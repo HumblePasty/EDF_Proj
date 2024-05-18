@@ -1,0 +1,560 @@
+# KBS - MCSE NPP Calculation - Refactor
+
+> Haolin Li
+> May 16, 2024
+
+## Load packages
+
+```{r}
+library(tidyverse)
+library(tibble)
+library(EML)
+library(readr)
+library(dplyr)
+```
+
+## import data
+
+```{r}
+# set working directory as current directory
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+getwd()
+
+# Biomass - Annual crops and alfalfa
+biomass_annuals_alfalfa <- read.csv("../kbs_msce/kbs_mcse_biomass_annual_crops_and_alfalfa.csv", header = T, skip = 29)
+
+biomass_annuals_alfalfa <- biomass_annuals_alfalfa %>%
+  slice(-1) %>%
+  filter(Treatment == "T1" | Treatment == "T2" | Treatment == "T3" | Treatment == "T4") %>%
+  mutate(Biomass = Biomass * 10)  #multiply by 10 to convert g/m2 to kg/ha
+
+# Biomass - Cover crops
+biomass_covercrops <- read.csv("../kbs_msce/kbs_mcse_biomass_cover_crop.csv", header = T, skip = 27)
+biomass_covercrops <- biomass_covercrops %>%
+  slice(-1) %>%
+  transform(biomass_g = as.numeric(biomass_g)) %>%
+  mutate(Biomass = biomass_g * 10)  #multiply by 10 to convert g/m2 to kg/ha
+
+# Biomass - non-cover crops
+biomass_weeds = read.csv("../kbs_msce/40-non+crop+biomass+1715975001.csv", header = T, skip = 53)
+biomass_weeds <- biomass_weeds %>%
+  slice(-1) %>%
+  filter(Treatment == "T1" | Treatment == "T2" | Treatment == "T3" | Treatment == "T4" | Treatment == "T7") %>%
+  transform(Biomass = as.numeric(Biomass)) %>%
+  mutate(Biomass = Biomass * 10)  #multiply by 10 to convert g/m2 to kg/ha
+
+# Biomass - compilation of herbaceous systems
+biomass_compilation = read.csv("../kbs_msce/291-biomass+compilation+of+herbaceous+systems+1715975221.csv", header = T, skip = 26)
+biomass_compilation <- biomass_compilation %>%
+  slice(-1) %>%
+  filter(Treatment == "T1" | Treatment == "T2" | Treatment == "T3" | Treatment == "T4" | Treatment == "T7") %>%
+  transform(Biomass = as.numeric(Biomass_g)) %>%
+  mutate(Biomass = Biomass * 10)  #multiply by 10 to convert g/m2 to kg/ha
+```
+
+## Set params
+
+```{r}
+# set params
+# Carbon concentrations - all values from Bolinder
+conc <- 0.45       # C concentration
+
+# HI values
+HI_corn <- 0.5
+HI_soy <- 0.4
+HI_wheat <- 0.4
+
+# S:R values
+SR_corn_fert <- 4.7
+SR_corn_fert_sd <- 2.1
+SR_corn_unf <- 3.6
+SR_corn_unf_sd <- 1.3
+SR_soy <- 5.2
+SR_soy_sd <- 3.1
+SR_wheat <- 6.0       # Eastern Canada value; US value was 1.1
+SR_wheat_sd <- 1.2    # Eastern Canada value; US value was 0.1
+SR_unsorted <- 1.6
+SR_unsorted_sd <- 1.2
+SR_legume <- 2.2
+SR_legume_sd <- 1.3
+# Red clover and vetch
+SR_rye <- 0.4
+# Comes after soybean in rotation
+
+# Ratio of extra-root biomass to root biomass
+ERtoR <- 0.65
+
+#----------------------------------------------------
+# Ndfa percentage (70% red clover only; Wilke 2010)
+Ndfa_soy_fert <- 0.34      # Gelfand 2015
+Ndfa_soy_unfert <- 0.84    # Gelfand 2015
+Ndfa_clover <- 0.7
+Ndfa_vetch <- 0.7
+# Estimate BG BNF
+# Different management systems have different estimates
+
+
+# Nitrogen AG/BG ratios
+Soy_RS_ratio <- 0.17     # Ordonez
+Soy_RS_ratio_sd <- 0.05
+Clover_RS_ratio <- 0.4   # Hammaleleh
+Vetch_RS_ratio <- 0.25   # Wilke, Puget
+
+# N concentrations from literature
+Nconc_vetch_root <- 0.02
+
+# Proportion of Soybean N not from BNF
+Soy_N_nonBNF <- 0.43
+```
+
+## Set up tables
+
+```{r}
+# Table with Treatment/Replicate combos
+treatments <- distinct(biomass_compilation, Treatment)
+treatments <- treatments[order(treatments$Treatment),]
+
+# ----
+
+# Table with crop species names
+crop_spp <- unique(biomass_annuals_alfalfa$Species)
+
+
+# ----
+
+# Data table that will hold final calculations
+df_C <- tibble(Treatment = treatments,
+             Corn_NPP = NA,
+             Corn_NPP_CV = NA,
+             Soy_NPP = NA,
+             Soy_NPP_CV = NA,
+             Wheat_NPP = NA,
+             Wheat_NPP_CV = NA,
+             Rye_NPP = NA,
+             Rye_CV = NA,
+             Clover_NPP = NA,
+             Clover_CV = NA,
+             Vetch_NPP = NA,
+             Vetch_CV = NA,
+             Weeds_NPP = NA,
+             Weeds_CV = NA)
+
+# Data table that will hold Zea mays calcs
+
+df_corn <- tibble(Treatment = treatments,
+                  n = NA,
+                  Cp_mean = NA,
+                  Cp_CV = NA,
+                  Cp_sd = NA,
+                  Cs_mean = NA,
+                  Cs_CV = NA,
+                  Cr_mean = NA,
+                  Cr_CV = NA,
+                  Ce_mean = NA,
+                  Ce_CV = NA,
+                  NPP_mean = NA,
+                  NPP_CV = NA)
+df_corn <- slice(df_corn, 1:4)  # remove T7 row
+```
+
+## Calculate corn C concentrations
+
+```{r}
+# Calculate corn Cp (C in agricultural product)
+
+# Corn Cp loop
+
+for (i in 1:nrow(df_corn)){
+  corn_Cp <- biomass_annuals_alfalfa %>%
+  filter(Treatment==treatments[i] & Species==crop_spp[2]) %>% 
+  filter(!is.na(Biomass)) %>%     # remove NAs
+  filter(Fraction == "SEED") %>%     # Grain yield biomass only
+  select(Biomass) %>%
+  summarise(mean = mean(Biomass), 
+            sd = sd(Biomass),
+            n=n()) %>%
+  as.vector()
+  
+  df_corn$n[i] <- corn_Cp$n
+  df_corn$Cp_mean[i] <- corn_Cp$mean * conc    
+        # Yield * [C]
+  df_corn$Cp_CV[i] <- corn_Cp$sd / corn_Cp$mean
+  df_corn$Cp_sd[i] <- corn_Cp$sd * conc
+}
+
+
+# Corn Cs calculation (C in stover)
+
+df_corn <- df_corn %>%
+  mutate(Cs_mean = Cp_mean * (1 - HI_corn) / HI_corn) %>%
+  mutate(Cs_CV = Cp_CV)
+```
+
+## Corn Cr, Ce, NPP calculations
+```{r}
+# Corn Cr calculation (C in root material)
+
+for (i in 1:nrow(df_corn)) {
+  
+  # Use "fertilized" S:R value for Treatments 1-3
+  if (df_corn$Treatment[i] %in% c("T1", "T2", "T3")) {
+    df_corn$Cr_mean[i] <- df_corn$Cp_mean[i] / (SR_corn_fert*HI_corn)
+    df_corn$Cr_CV[i] <- sqrt((df_corn$Cp_CV[i])^2 + (SR_corn_fert_sd/SR_corn_fert)^2)
+            # error propagation
+  
+  # Use "unfertilized" S:R value for T4      
+  } else if (df_corn$Treatment[i] %in% "T4"){  
+    df_corn$Cr_mean[i] <- df_corn$Cp_mean[i] / (SR_corn_unf*HI_corn)
+    df_corn$Cr_CV[i] <- sqrt((df_corn$Cp_CV[i])^2 + (SR_corn_unf_sd/SR_corn_unf)^2)
+            # error propagation
+  }
+}
+
+# Corn Ce calculation (C in extra-root material)
+df_corn <- df_corn %>%
+  mutate(Ce_mean = Cr_mean * ERtoR) %>%
+  mutate(Ce_CV = Cr_CV)
+
+
+# Corn NPP calculation
+    # IMPORTANT: Not including Cp - grain yield. Only including
+    # Cs - Non-seed aboveground, Cr - Roots, and Ce - Extra-root
+    # biomass including exudates.
+df_corn <- df_corn %>%
+  mutate(NPP_mean = Cs_mean + Cr_mean + Ce_mean) %>%
+  mutate(NPP_CV = (Cs_CV*Cs_mean + Cr_CV*Cr_mean + Ce_CV*Ce_mean) / (Cs_mean + Cr_mean + Ce_mean))
+
+
+# Move Corn NPP (mean + CV) calculations into df
+df_C$Corn_NPP[1:4] <- df_corn$NPP_mean
+df_C$Corn_NPP_CV[1:4] <- df_corn$NPP_CV
+
+```
+
+
+## Soy calcs
+```{r}
+# Soy calculation df
+df_soy <- tibble(Treatment = treatments,
+                  n = NA,
+                  Cp_mean = NA,
+                  Cp_CV = NA,
+                  Cp_sd = NA,
+                  Cs_mean = NA,
+                  Cs_CV = NA,
+                  Cr_mean = NA,
+                  Cr_CV = NA,
+                  Ce_mean = NA,
+                  Ce_CV = NA,
+                  NPP_mean = NA,
+                  NPP_CV = NA)
+df_soy <- slice(df_soy, 1:4)  # remove T7 row
+
+
+# Calculate soy C concentrations
+
+# Soy Cp loop
+
+for (i in 1:nrow(df_soy)){
+  soy_Cp <- biomass_annuals_alfalfa %>%
+    filter(Treatment==treatments[i] & Species==crop_spp[1]) %>% 
+    filter(!is.na(Biomass)) %>%     # remove NAs
+    filter(Fraction == "SEED") %>%     # Grain yield biomass only
+    select(Biomass) %>%
+    summarise(mean = mean(Biomass), 
+              sd = sd(Biomass),
+              n=n()) %>%
+    as.vector()
+  
+  df_soy$n[i] <- soy_Cp$n
+  df_soy$Cp_mean[i] <- soy_Cp$mean * conc   
+        # Yield * [C]
+  df_soy$Cp_CV[i] <- soy_Cp$sd / soy_Cp$mean
+  df_soy$Cp_sd[i] <- soy_Cp$sd * conc
+}
+
+
+# Soy Cs calculation
+
+df_soy <- df_soy %>%
+  mutate(Cs_mean = Cp_mean * (1 - HI_soy) / HI_soy) %>%
+  mutate(Cs_CV = Cp_CV)
+
+
+# Soy Cr calculation
+
+for (i in 1:nrow(df_soy)) {
+  df_soy$Cr_mean[i] <- df_soy$Cp_mean[i] / (SR_soy*HI_soy)
+  df_soy$Cr_CV[i] <- sqrt((df_soy$Cp_CV[i])^2 + (SR_soy_sd/SR_soy)^2)
+            # error propagation
+}
+
+# Soy Ce calculation
+df_soy <- df_soy %>%
+  mutate(Ce_mean = Cr_mean * ERtoR) %>%
+  mutate(Ce_CV = Cr_CV)
+
+
+# Soy NPP calculation
+    # IMPORTANT: Not including Cp - grain yield. Only including
+    # Cs - Non-seed aboveground, Cr - Roots, and Ce - Extra-root
+    # biomass including exudates.
+df_soy <- df_soy %>%
+  mutate(NPP_mean = Cs_mean + Cr_mean + Ce_mean) %>%
+  mutate(NPP_CV = (Cs_CV*Cs_mean + Cr_CV*Cr_mean + Ce_CV*Ce_mean) / (Cs_mean + Cr_mean + Ce_mean))
+
+
+# Move Soy NPP (mean + CV) calculations into df
+df_C$Soy_NPP[1:4] <- df_soy$NPP_mean
+df_C$Soy_NPP_CV[1:4] <- df_soy$NPP_CV
+
+```
+
+## Wheat calculation
+
+```{r}
+# Wheat calculation df
+df_wheat <- tibble(Treatment = treatments,
+                  n = NA,
+                    Cp_mean = NA,
+                    Cp_CV = NA,
+                    Cp_sd = NA,
+                    Cs_mean = NA,
+                    Cs_CV = NA,
+                    Cr_mean = NA,
+                    Cr_CV = NA,
+                    Ce_mean = NA,
+                    Ce_CV = NA,
+                    NPP_mean = NA,
+                    NPP_CV = NA)
+df_wheat <- slice(df_wheat, 1:4)  # remove T7 row
+
+
+# Calculate wheat C concentrations
+
+# Wheat Cp loop
+
+for (i in 1:nrow(df_wheat)){
+  wheat_Cp <- biomass_annuals_alfalfa %>%
+    filter(Treatment==treatments[i] & Species==crop_spp[3]) %>% 
+    filter(!is.na(Biomass)) %>%     # remove NAs
+    filter(Fraction == "SEED") %>%     # Grain yield biomass only
+    select(Biomass) %>%
+    summarise(mean = mean(Biomass), 
+              sd = sd(Biomass),
+              n=n()) %>%
+    as.vector()
+  
+  df_wheat$n[i] <- wheat_Cp$n
+  df_wheat$Cp_mean[i] <- wheat_Cp$mean * conc   
+        # Yield * [C]
+  df_wheat$Cp_CV[i] <- wheat_Cp$sd / wheat_Cp$mean
+  df_wheat$Cp_sd[i] <- wheat_Cp$sd * conc
+}
+
+
+# Wheat Cs calculation
+
+df_wheat <- df_wheat %>%
+  mutate(Cs_mean = Cp_mean * (1 - HI_wheat) / HI_wheat) %>%
+  mutate(Cs_CV = Cp_CV)
+
+
+# Wheat Cr calculation
+
+for (i in 1:nrow(df_wheat)) {
+  df_wheat$Cr_mean[i] <- df_wheat$Cp_mean[i] / (SR_wheat*HI_wheat)
+  df_wheat$Cr_CV[i] <- sqrt((df_wheat$Cp_CV[i])^2 + (SR_wheat_sd/SR_wheat)^2)
+            # error propagation
+}
+
+# Wheat Ce calculation
+df_wheat <- df_wheat %>%
+  mutate(Ce_mean = Cr_mean * ERtoR) %>%
+  mutate(Ce_CV = Cr_CV)
+
+
+# Wheat NPP calculation
+    # IMPORTANT: Not including Cp - grain yield. Only including
+    # Cs - Non-seed aboveground, Cr - Roots, and Ce - Extra-root
+    # biomass including exudates.
+df_wheat <- df_wheat %>%
+  mutate(NPP_mean = Cs_mean + Cr_mean + Ce_mean) %>%
+  mutate(NPP_CV = (Cs_CV*Cs_mean + Cr_CV*Cr_mean + Ce_CV*Ce_mean) / (Cs_mean + Cr_mean + Ce_mean))
+
+
+# Move Wheat NPP (mean + CV) calculations into df
+df_C$Wheat_NPP[1:4] <- df_wheat$NPP_mean
+df_C$Wheat_NPP_CV[1:4] <- df_wheat$NPP_CV
+```
+
+
+## Cover crops
+
+```{r}
+# Initialize cover crop df
+
+cover_spp <- unique(biomass_covercrops$species)
+
+df_cover <- tibble(Species = c("Secale cereale M.Bieb.",
+                               "Secale cereale M.Bieb.",
+                               "Trifolium pratense L.",
+                               "Trifolium pratense L.",
+                               "Vicia villosa  Roth",
+                               "Vicia villosa  Roth"),
+                  Treatment = c("T3", "T4",
+                                "T3", "T4",
+                                "T3", "T4"),
+                  n = NA,
+                  Cag_mean = NA,
+                  Cag_CV = NA,
+                  Cag_sd = NA,
+                  Cr_mean = NA,
+                  Cr_CV = NA,
+                  Ce_mean = NA,
+                  Ce_CV = NA,
+                  NPP_mean = NA,
+                  NPP_CV = NA)
+
+
+# Calculate cover crop aboveground biomass C content
+
+for (i in 1:nrow(df_cover)){
+  cover_ag <- biomass_covercrops %>%
+    filter(treatment==df_cover$Treatment[i] & species==df_cover$Species[i]) %>% 
+    filter(!is.na(Biomass)) %>%     # remove NAs
+    select(Biomass) %>%
+    summarise(mean = mean(Biomass), 
+              sd = sd(Biomass),
+              n=n()) %>%
+    as.vector()
+  
+  df_cover$n[i] <- cover_ag$n
+  df_cover$Cag_mean[i] <- cover_ag$mean * conc   
+        # Yield * [C]
+  df_cover$Cag_CV[i] <- cover_ag$sd / cover_ag$mean
+  df_cover$Cag_sd[i] <- cover_ag$sd * conc
+}
+
+
+# Calculate cover crop root biomass C content
+
+for (i in 1:nrow(df_cover)){
+  if (df_cover$Species[i] %in% cover_spp[1]) {
+    df_cover$Cr_mean[i] <- df_cover$Cag_mean[i] / SR_rye
+    df_cover$Cr_CV[i] <- df_cover$Cag_CV[i]
+  } else if (df_cover$Species[i] %in% cover_spp[2:3]) {
+    df_cover$Cr_mean[i] <- df_cover$Cag_mean[i] / SR_legume
+    df_cover$Cr_CV[i] <- sqrt((df_cover$Cag_CV[i])^2 + (SR_legume_sd/SR_legume)^2)
+  }
+} 
+
+
+# Cover crop Ce calculation
+df_cover <- df_cover %>%
+  mutate(Ce_mean = Cr_mean * ERtoR) %>%
+  mutate(Ce_CV = Cr_CV)
+
+
+# Cover crop NPP calculation
+df_cover <- df_cover %>%
+  mutate(NPP_mean = Cag_mean + Cr_mean + Ce_mean) %>%
+  mutate(NPP_CV = (Cag_CV*Cag_mean + Cr_CV*Cr_mean + Ce_CV*Ce_mean) / (Cag_mean + Cr_mean + Ce_mean))
+
+
+# Move cover crop NPP (mean + CV) calculations into df
+df_C$Rye_NPP[3:4] <- df_cover$NPP_mean[1:2]
+df_C$Rye_CV[3:4] <- df_cover$NPP_CV[1:2]
+df_C$Clover_NPP[3:4] <- df_cover$NPP_mean[3:4]
+df_C$Clover_CV[3:4] <- df_cover$NPP_CV[3:4]
+df_C$Vetch_NPP[3:4] <- df_cover$NPP_mean[5:6]
+df_C$Vetch_CV[3:4] <- df_cover$NPP_CV[5:6]
+```
+
+
+## Weeds calculations
+
+```{r}
+# Sum weed biomass in each station
+## This chunk takes a while
+
+df_weeds_sums <- distinct(biomass_weeds,
+                           Year, Treatment, Replicate, Station)
+
+for (i in 1:nrow(df_weeds_sums)) {
+  df_weeds_sums$Biomass_sum[i] <- biomass_weeds %>%
+    filter(Year == df_weeds_sums$Year[i]) %>%
+    filter(Treatment == df_weeds_sums$Treatment[i]) %>%
+    filter(Replicate == df_weeds_sums$Replicate[i]) %>%
+    filter(Station == df_weeds_sums$Station[i]) %>%
+    summarise(Biomass = sum(Biomass)) %>%
+    as.numeric()
+
+}
+```
+
+```{r}
+# Initialize weeds biomass df
+df_weeds <- tibble(Treatment = treatments,
+                  n = NA,
+                  Cag_mean = NA,
+                  Cag_CV = NA,
+                  Cag_sd = NA,
+                  Cr_mean = NA,
+                  Cr_CV = NA,
+                  Ce_mean = NA,
+                  Ce_CV = NA,
+                  NPP_mean = NA,
+                  NPP_CV = NA)
+
+
+# Calculate AG weed biomass C content
+
+for (i in 1:nrow(df_weeds)){
+  weed_ag <- df_weeds_sums %>%
+    filter(Treatment==df_weeds$Treatment[i]) %>% 
+    filter(!is.na(Biomass_sum)) %>%     # remove NAs
+    select(Biomass_sum) %>%
+    summarise(mean = mean(Biomass_sum), 
+              sd = sd(Biomass_sum),
+              n=n()) %>%
+    as.vector()
+  
+  df_weeds$n[i] <- weed_ag$n
+  df_weeds$Cag_mean[i] <- weed_ag$mean * conc     
+        # Yield * [C]
+  df_weeds$Cag_CV[i] <- weed_ag$sd / weed_ag$mean
+  df_weeds$Cag_sd[i] <- weed_ag$sd * conc
+}
+
+
+# Calculate weed root biomass C content
+
+for (i in 1:nrow(df_weeds)){
+  df_weeds$Cr_mean[i] <- df_weeds$Cag_mean[i] / SR_unsorted
+  df_weeds$Cr_CV[i] <- sqrt((df_weeds$Cag_CV[i])^2 + (SR_unsorted_sd/SR_unsorted)^2)
+  
+} 
+
+
+# Calculate weed extra-root biomass C content
+
+df_weeds <- df_weeds %>%
+  mutate(Ce_mean = Cr_mean * ERtoR) %>%
+  mutate(Ce_CV = Cr_CV)
+
+
+# Weeds NPP calculation
+df_weeds <- df_weeds %>%
+  mutate(NPP_mean = Cag_mean + Cr_mean + Ce_mean) %>%
+  mutate(NPP_CV = (Cag_CV*Cag_mean + Cr_CV*Cr_mean + Ce_CV*Ce_mean) / (Cag_mean + Cr_mean + Ce_mean))
+
+
+# Move calculations into df
+
+df_C$Weeds_NPP <- df_weeds$NPP_mean
+df_C$Weeds_CV <- df_weeds$NPP_CV
+
+# export df_C to csv
+write.csv(df_C, "kbs_NPP_refactor.csv")
+```

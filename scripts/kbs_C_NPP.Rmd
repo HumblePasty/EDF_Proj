@@ -570,6 +570,7 @@ df_weeds <- df_weeds %>%
 
 df_C$Weeds_NPP <- df_weeds$NPP_mean
 df_C$Weeds_CV <- df_weeds$NPP_CV
+
 ```
 
 
