@@ -1,7 +1,7 @@
 # KBS - MCSE NPP Calculation - Refactor
 
 > Haolin Li
-> May 16, 2024
+> Jun 1, 2024
 
 ## Load packages
 
@@ -21,7 +21,7 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 getwd()
 
 # Biomass - Annual crops and alfalfa
-biomass_annuals_alfalfa <- read.csv("../kbs_msce/kbs_mcse_biomass_annual_crops_and_alfalfa.csv", header = T, skip = 29)
+biomass_annuals_alfalfa <- read.csv("../../data/kbs_msce/kbs_mcse_biomass_annual_crops_and_alfalfa.csv", header = T, skip = 29)
 
 biomass_annuals_alfalfa <- biomass_annuals_alfalfa %>%
   slice(-1) %>%
@@ -29,14 +29,14 @@ biomass_annuals_alfalfa <- biomass_annuals_alfalfa %>%
   mutate(Biomass = Biomass * 10)  #multiply by 10 to convert g/m2 to kg/ha
 
 # Biomass - Cover crops
-biomass_covercrops <- read.csv("../kbs_msce/kbs_mcse_biomass_cover_crop.csv", header = T, skip = 27)
+biomass_covercrops <- read.csv("../../data/kbs_msce/kbs_mcse_biomass_cover_crop.csv", header = T, skip = 27)
 biomass_covercrops <- biomass_covercrops %>%
   slice(-1) %>%
   transform(biomass_g = as.numeric(biomass_g)) %>%
   mutate(Biomass = biomass_g * 10)  #multiply by 10 to convert g/m2 to kg/ha
 
 # Biomass - non-cover crops
-biomass_weeds = read.csv("../kbs_msce/40-non+crop+biomass+1715975001.csv", header = T, skip = 53)
+biomass_weeds = read.csv("../../data/kbs_msce/40-non+crop+biomass+1715975001.csv", header = T, skip = 53)
 biomass_weeds <- biomass_weeds %>%
   slice(-1) %>%
   filter(Treatment == "T1" | Treatment == "T2" | Treatment == "T3" | Treatment == "T4" | Treatment == "T7") %>%
@@ -44,7 +44,7 @@ biomass_weeds <- biomass_weeds %>%
   mutate(Biomass = Biomass * 10)  #multiply by 10 to convert g/m2 to kg/ha
 
 # Biomass - compilation of herbaceous systems
-biomass_compilation = read.csv("../kbs_msce/291-biomass+compilation+of+herbaceous+systems+1715975221.csv", header = T, skip = 26)
+biomass_compilation = read.csv("../../data/kbs_msce/291-biomass+compilation+of+herbaceous+systems+1715975221.csv", header = T, skip = 26)
 biomass_compilation <- biomass_compilation %>%
   slice(-1) %>%
   filter(Treatment == "T1" | Treatment == "T2" | Treatment == "T3" | Treatment == "T4" | Treatment == "T7") %>%

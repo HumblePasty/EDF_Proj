@@ -10,7 +10,7 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 getwd()
 
 # load data sheets
-cap_path = "../cap_data/C_Data_2011-2015_0.xlsx"
+cap_path = "../../data/cap_data/C_Data_2011-2015_0.xlsx"
 cap_plot_entity = read_excel(cap_path, sheet = "Plot Identifiers") %>%
   as.data.frame() %>%
   slice(-1:-2)
@@ -233,8 +233,8 @@ df_wheat = cap_plot_agronomic %>%
   mutate(c_input_wheat = C_p * 0 + C_s * 1 + C_r * 1 + C_e * 1)
 
 
-cover_biomass_to_C = 0.65 # conversion factor from biomass to C for cover crops
-
+rye_biomass_to_C = 0.423 # conversion factor from biomass to C for cover crops
+rye_biomass_to_C_sd = 1.8
 ### calculate cover crop input carbon
 df_cover = cap_plot_agronomic %>%
   select(uniqueid, plotid, year,AGR06, AGR07, AGR41, AGR43, AGR46) %>% # select columns
@@ -264,10 +264,13 @@ df_cover = cap_plot_agronomic %>%
     ) %>%
   # sum and create the input carbon column
   mutate(c_input_cover = 
-           (c_fall_biomass_rye + c_spring_biomass_rye) * cover_biomass_to_C + 
+           (c_fall_biomass_rye + c_spring_biomass_rye) * rye_biomass_to_C + 
            c_fall_carbon_red_mixed + c_spring_carbon_red_mixed
          )
 
+
+mean_carbon_per_weed = 0.425
+sd_carbon_per_weed = 2
 ### calculate weedy input carbon
 df_weedy = cap_plot_agronomic %>%
   select(uniqueid, plotid, year, AGR40) %>% # select columns
@@ -283,8 +286,8 @@ df_weedy = cap_plot_agronomic %>%
   rename(
     c_input_weedy = AGR40
     ) %>%
-  # multiply by 0.45
-  mutate(c_input_weedy = c_input_weedy * 0.45)
+  # multiply by 0.425
+  mutate(c_input_weedy = c_input_weedy * mean_carbon_per_weed)
 
 
 # merge all total carbon inputs into one dataframe and fit into the database
@@ -363,4 +366,4 @@ cap_carbon_input = df_corn %>%
   select(-`2011crop`, -`2012crop`, -`2013crop`, -`2014crop`, -`2015crop`)
 
 # export the carbon input data
-write_csv(cap_carbon_input, "cap_carbon_input.csv")
+write_csv(cap_carbon_input, "../../temp/cap_carbon_input.csv")
