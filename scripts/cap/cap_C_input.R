@@ -82,7 +82,7 @@ ERtoR <- 0.65
 
 ### calculate corn input c
 df_corn = cap_plot_agronomic %>%
-  select(uniqueid, plotid, year, AGR24, AGR23, AGR09, AGR33, AGR17, AGR18) %>% # select columns
+  select(uniqueid, plotid, year, AGR24, AGR23, AGR09, AGR33, AGR17, AGR18, AGR32, AGR04)%>% # select columns
   # merge with the "nitrogen" column from the cap_plot_entity data based on uniqueid and plotid
   left_join(
     cap_plot_entity %>% 
@@ -95,7 +95,9 @@ df_corn = cap_plot_agronomic %>%
          AGR09 = ifelse(is.na(AGR09), 0, AGR09), # vegetative carbon
          AGR33 = ifelse(is.na(AGR33), 0, AGR33), # dry grain yield, kg/ha
          AGR17 = ifelse(is.na(AGR17), 0, AGR17), # grain yield at 15.5% moisture, kg/ha
-         AGR18 = ifelse(is.na(AGR18), 0, AGR18) # grain moisture, g/kg
+         AGR18 = ifelse(is.na(AGR18), 0, AGR18), # grain moisture, g/kg
+         AGR32 = ifelse(is.na(AGR32), 0, AGR32), # corn cob biomass
+         AGR04 = ifelse(is.na(AGR04), 0, AGR04) # corn vegetative biomass
          ) %>%
   # convert to numeric
   mutate(AGR24 = as.numeric(AGR24),
@@ -103,7 +105,9 @@ df_corn = cap_plot_agronomic %>%
          AGR09 = as.numeric(AGR09),
          AGR33 = as.numeric(AGR33),
          AGR17 = as.numeric(AGR17),
-         AGR18 = as.numeric(AGR18)
+         AGR18 = as.numeric(AGR18),
+         AGR32 = as.numeric(AGR32),
+         AGR04 = as.numeric(AGR04)
          ) %>%
   # rename columns
   rename(c_input_corn_cob = AGR24,
@@ -111,10 +115,13 @@ df_corn = cap_plot_agronomic %>%
          c_input_corn_vegetative = AGR09,
          c_input_corn_yield_dry = AGR33,
          c_input_corn_yield_raw = AGR17,
-         c_input_corn_moisture = AGR18
+         c_input_corn_moisture = AGR18,
+         biomass_corn_cob = AGR32,
+         biomass_corn_vegetative = AGR04
          ) %>%
   # create 4 parts C_p, C_s, C_r, C_e
   mutate(
+       corn_biomass = biomass_corn_cob + c_input_corn_grain + biomass_corn_vegetative,
        # for C_p calculation, if c_input_corn_grain is not 0, use it
        # otherwise use c_input_corn_yield_dry to estimate
        # otherwise use c_input_corn_yield_raw to estimate
@@ -153,14 +160,15 @@ df_corn = cap_plot_agronomic %>%
 
 ### calculate soybean input c
 df_soybean = cap_plot_agronomic %>%
-  select(uniqueid, plotid, year, AGR27, AGR11, AGR34, AGR19, AGR20) %>% # select columns
+  select(uniqueid, plotid, year, AGR27, AGR11, AGR34, AGR19, AGR20, AGR34, AGR05) %>% # select columns
   # alter na values to 0
   mutate(
     AGR27 = ifelse(is.na(AGR27), 0, AGR27), # soy grain carbon
     AGR11 = ifelse(is.na(AGR11), 0, AGR11), # soy vegetative carbon
     AGR34 = ifelse(is.na(AGR34), 0, AGR34), # soy dry grain yield, kg/ha
     AGR19 = ifelse(is.na(AGR19), 0, AGR19), # soy grain yield at 13.5% moisture, kg/ha
-    AGR20 = ifelse(is.na(AGR20), 0, AGR20) # soy grain moisture, g/kg
+    AGR20 = ifelse(is.na(AGR20), 0, AGR20), # soy grain moisture, g/kg
+    AGR05 = ifelse(is.na(AGR05), 0, AGR05) # soy vegetative biomass
     ) %>%
   # convert to numeric
   mutate(
@@ -168,7 +176,8 @@ df_soybean = cap_plot_agronomic %>%
     AGR11 = as.numeric(AGR11),
     AGR34 = as.numeric(AGR34),
     AGR19 = as.numeric(AGR19),
-    AGR20 = as.numeric(AGR20)
+    AGR20 = as.numeric(AGR20),
+    AGR05 = as.numeric(AGR05)
     ) %>%
   # rename columns
   rename(
@@ -176,10 +185,12 @@ df_soybean = cap_plot_agronomic %>%
     c_input_soybean_vegetative = AGR11,
     c_input_soybean_yield_dry = AGR34,
     c_input_soybean_yield_raw = AGR19,
-    c_input_soybean_moisture = AGR20
+    c_input_soybean_moisture = AGR20,
+    biomass_soybean_vegetative = AGR05
     ) %>%
   # create 4 parts C_p, C_s, C_r, C_e
   mutate(
+      soybean_biomass = c_input_soybean_grain + biomass_soybean_vegetative,
       C_p = case_when(
              c_input_soybean_grain > 0 ~ c_input_soybean_grain,
              c_input_soybean_yield_dry > 0 ~ c_input_soybean_yield_dry * conc,
@@ -222,12 +233,14 @@ df_wheat = cap_plot_agronomic %>%
     wheat_yield_dry = wheat_yield_raw * (1 - wheat_moisture / 1000)
   ) %>%
   # create 4 parts C_p, C_s, C_r, C_e
-  mutate(C_p = wheat_yield_dry * conc,
-         C_s = C_p * (1 - HI_wheat) / HI_wheat,
-         # C_s_calculated = c_input_wheat_vegetative, # a different method to calculate C_s
-         SR_rates = SR_wheat,
-         C_r = C_p / (SR_rates * HI_wheat),
-         C_e = C_r * ERtoR) %>%
+  mutate(
+    biomass_wheat = wheat_yield_dry, # use dry matter yield as biomass
+    C_p = wheat_yield_dry * conc,
+     C_s = C_p * (1 - HI_wheat) / HI_wheat,
+     # C_s_calculated = c_input_wheat_vegetative, # a different method to calculate C_s
+     SR_rates = SR_wheat,
+     C_r = C_p / (SR_rates * HI_wheat),
+     C_e = C_r * ERtoR) %>%
   # sum and create the input carbon column
   # C_input = C_p * 0 + C_s * 1 + C_r * 1 + C_e * 1
   mutate(c_input_wheat = C_p * 0 + C_s * 1 + C_r * 1 + C_e * 1)
@@ -263,7 +276,9 @@ df_cover = cap_plot_agronomic %>%
     c_spring_carbon_red_mixed = AGR46
     ) %>%
   # sum and create the input carbon column
-  mutate(c_input_cover = 
+  mutate(
+    biomass_cover = c_fall_biomass_rye + c_spring_biomass_rye + c_fall_biomass_red_mixed,
+    c_input_cover = 
            (c_fall_biomass_rye + c_spring_biomass_rye) * rye_biomass_to_C + 
            c_fall_carbon_red_mixed + c_spring_carbon_red_mixed
          )
@@ -287,32 +302,39 @@ df_weedy = cap_plot_agronomic %>%
     c_input_weedy = AGR40
     ) %>%
   # multiply by 0.425
-  mutate(c_input_weedy = c_input_weedy * mean_carbon_per_weed)
+  mutate(
+    biomass_weedy = c_input_weedy,
+    c_input_weedy = c_input_weedy * mean_carbon_per_weed)
 
 
 # merge all total carbon inputs into one dataframe and fit into the database
 cap_carbon_input = df_corn %>%
-  select(uniqueid, plotid, year, c_input_corn) %>%
+  select(uniqueid, plotid, year, c_input_corn, corn_biomass) %>%
   left_join(
-    df_soybean %>% select(uniqueid, plotid, year, c_input_soybean),
+    df_soybean %>% select(uniqueid, plotid, year, c_input_soybean, soybean_biomass),
     by = c("uniqueid", "plotid", "year")
   ) %>%
   left_join(
-    df_wheat %>% select(uniqueid, plotid, year, c_input_wheat),
+    df_wheat %>% select(uniqueid, plotid, year, c_input_wheat, biomass_wheat),
     by = c("uniqueid", "plotid", "year")
   ) %>%
   left_join(
-    df_cover %>% select(uniqueid, plotid, year, c_input_cover),
+    df_cover %>% select(uniqueid, plotid, year, c_input_cover, biomass_cover),
     by = c("uniqueid", "plotid", "year")
   ) %>%
   left_join(
-    df_weedy %>% select(uniqueid, plotid, year, c_input_weedy),
+    df_weedy %>% select(uniqueid, plotid, year, c_input_weedy, biomass_weedy),
     by = c("uniqueid", "plotid", "year")
   ) %>%
+  # biomass
+  mutate(
+    biomass_total_estimated = corn_biomass + soybean_biomass + biomass_wheat + biomass_cover + biomass_weedy
+  ) %>%
+  # remove the biomass columns
+  select(-corn_biomass, -soybean_biomass, -biomass_wheat, -biomass_cover, -biomass_weedy) %>%
   # calc the total C input
   mutate(
-    C_input_total = c_input_corn + c_input_soybean + c_input_wheat + c_input_cover + c_input_weedy,
-    C_output = 0 # TBD by further discussion
+    C_input_total = c_input_corn + c_input_soybean + c_input_wheat + c_input_cover + c_input_weedy
   ) %>%
   # identify which crop was grown, when a crop was grown, the carbon input for that crop is not 0
   # if all are 0, then it is a no crop plot
@@ -363,7 +385,7 @@ cap_carbon_input = df_corn %>%
     )
   ) %>%
   # delete the 2011crop, 2012crop, 2013crop, 2014crop, 2015crop columns
-  select(-`2011crop`, -`2012crop`, -`2013crop`, -`2014crop`, -`2015crop`)
+  select(-`2011crop`, -`2012crop`, -`2013crop`, -`2014crop`, -`2015crop`, -Crop_temp)
 
 # export the carbon input data
 write_csv(cap_carbon_input, "../../temp/cap_carbon_input.csv")

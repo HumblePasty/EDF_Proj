@@ -141,25 +141,36 @@ df_crop_temp <- df_crop %>%
 kbs_carbon_input <- df_crop %>%
   # rename all columns to be lowercase
   rename_all(tolower) %>%
-  select(-fraction, -biomass, -c_p, -hi, -c_s, -sr_ratio, -c_r, -c_e) %>%
+  select(-fraction, -c_p, -hi, -c_s, -sr_ratio, -c_r, -c_e) %>%
+  # rename the "biomass" column to "total_biomass_estimated"
+  rename(total_biomass_estimated = biomass) %>%
   left_join(
     df_covercrop %>%
       rename_all(tolower) %>%
-      select(year, treatment, replicate, station, c_input_cover),
+      select(year, treatment, replicate, station, c_input_cover, biomass),
       # aggregate the cover crop biomass by year, treatment, replicate, and station
       group_by(year, treatment, replicate, station) %>%
       summarise_all(sum),
     by = c("year", "treatment", "replicate", "station")
   ) %>%
+  # add the biomass of the cover crop to the total biomass estimated
+  mutate(total_biomass_estimated = total_biomass_estimated + biomass) %>%
+  # delete the biomass_cover column
+  select(-biomass) %>%
   left_join(
     df_weedy %>%
       rename_all(tolower) %>%
-      select(year, treatment, replicate, station, c_input_weedy) %>%
+      select(year, treatment, replicate, station, c_input_weedy, biomass) %>%
       # aggregate the weedy biomass by year, treatment, replicate, and station
       group_by(year, treatment, replicate, station) %>%
       summarise_all(sum),
     by = c("year", "treatment", "replicate", "station")
   ) %>%
+  # add the biomass of the weedy to the total biomass estimated
+  mutate(total_biomass_estimated = total_biomass_estimated +
+           biomass) %>%
+  # delete the biomass column
+  select(-biomass) %>%
   left_join(
     df_compilation %>%
       rename_all(tolower) %>%
