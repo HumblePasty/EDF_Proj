@@ -1,0 +1,954 @@
+Spreadsheet tab,Spreadsheet tab description,Element or value display name,Description,Data type,Unit,Calculation,Format,Low Value,High Value,Acceptable values,Required,Accepts null value
+Overview,About the experiment,Site ID,"Required. Where data was collected. Enter a 2 digit state, 2 digit city/town code with up to 4 additional characters for unique experimental ID with no spaces or special characters. E.g., MNMOBRR1 representing Minnesota, Morris, Field BRR1.",CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+Overview,About the experiment,Site ID descriptor,A meaningful name that describes the site,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Overview,About the experiment,Research Unit,The research unit location,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Overview,About the experiment,Dataset Name,A meaningful name that describes the dataset,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+Overview,About the experiment,Dataset Descriptor,A meaningful description of the dataset,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+Overview,About the experiment,Funding Source,"The source of experimental funding, including grant numbers when possible",CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+Overview,About the experiment,Start Date,The date the experiment began,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,Y,N
+Overview,About the experiment,End Date,The date the experiment ended,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,Y,N
+Overview,About the experiment,Duration of Dataset,The number of years the experiment was conducted or is ongoing ,INTEGER,NA,NA,NA,0,100,NA,N,Y
+FieldSites,Information about the field sites,Site ID,"Required. Where data was collected. Enter a 2 digit state, 2 digit city/town code with up to 4 additional characters for unique experimental ID with no spaces or special characters. E.g., MNMOBRR1 representing Minnesota, Morris, Field BRR1.",CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+FieldSites,Information about the field sites,Date,The date on which this location was first designated as a field site. ,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+FieldSites,Information about the field sites,MLRA,Major Land Resource Area code,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+FieldSites,Information about the field sites,Field ID,Unique field identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+FieldSites,Information about the field sites,Country,3 character ISO Country Code,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+FieldSites,Information about the field sites,State/Province,State or province,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+FieldSites,Information about the field sites,County,County name,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+FieldSites,Information about the field sites,City,City name,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+FieldSites,Information about the field sites,Postal Code,Postal Code,INTEGER,NA,NA,NA,NA,NA,NA,Y,N
+FieldSites,Information about the field sites,Latitude decimal deg,Latitude in decimal format in North America specified out to 6 decimal places,NUMERIC,decimal degrees,NA,NA,-75,75,NA,N,Y
+FieldSites,Information about the field sites,Longitude decimal deg,Longitude in decimal format in North America specified out to 6 decimal places,NUMERIC,decimal degrees,NA,NA,-180,180,NA,N,Y
+FieldSites,Information about the field sites,Spatial Description,Geographic layout of the experiment,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+FieldSites,Information about the field sites,Elevation m,Field site elevation in meters,NUMERIC,m,NA,NA,-50,5000,NA,N,Y
+FieldSites,Information about the field sites,MAP mm,Mean Annual Precipitation,NUMERIC,mm,NA,NA,10,5000,NA,N,Y
+FieldSites,Information about the field sites,MAT degC,Mean Annual Temperature,NUMERIC,°C,NA,NA,-10,30,NA,N,Y
+FieldSites,Information about the field sites,Native Veg,Short description of the study site native vegetation,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+FieldSites,Information about the field sites,Site History,Pertinent site history information,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Persons,People doing the research,Site ID,"Required. Where data was collected. Enter a 2 digit state, 2 digit city/town code with up to 4 additional characters for unique experimental ID with no spaces or special characters. E.g., MNMOBRR1 representing Minnesota, Morris, Field BRR1.",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Persons,People doing the research,Last Name,The last name of this person,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+Persons,People doing the research,First Name,The first name of this person,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+Persons,People doing the research,Middle Name,The middle name of this person,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Persons,People doing the research,Suffix,Suffix,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Persons,People doing the research,Role in Study,The role of this person in the experiment. At least one person must be designated the PI (Principle Investigator),CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Persons,People doing the research,Primary Contact,Whether this person is the primary contact for inquiries on the study ,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Persons,People doing the research,Department,The department or institution that is conducting the study,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Persons,People doing the research,Organization,The organization responsible for conducting the study,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Persons,People doing the research,Date Created,The date the database was created,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+Persons,People doing the research,Profession,The profession of this person,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Persons,People doing the research,Email,The email address of this person,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Persons,People doing the research,Telephone,The telephone number of this person,CHARACTER,NA,NA,xxx-xxx-xxxx,NA,NA,NA,N,Y
+Persons,People doing the research,Web Site,The web site of this person,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Persons,People doing the research,Note,Any personal notes this person wishes to divulge,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Citations,Publications about this research,Site ID,"Required. Where data was collected. Enter a 2 digit state, 2 digit city/town code with up to 4 additional characters for unique experimental ID with no spaces or special characters. E.g., MNMOBRR1 representing Minnesota, Morris, Field BRR1.",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Citations,Publications about this research,Date Published,"Date of publication. If only the year is known, format will be 1/1/yyyy.",DATE,NA,NA,mm/dd/yyyy,1940,3000,NA,N,Y
+Citations,Publications about this research,Type,"Type of reference used for support - journal article, book chapter, etc.",CHARACTER,NA,NA,NA,NA,NA,Abstract about data | Book chapter about data |Journal article about data | Popular article | Proceedings about data | Published report about data | Thesis,N,Y
+Citations,Publications about this research,Title,Title of reference.,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Citations,Publications about this research,Is Part Of,"If a Book Chapter, this is the title of the book.",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Citations,Publications about this research,Author,"Usually this would be the first author's name, but this could be an organization.",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Citations,Publications about this research,Correspond Author,Name and contact information like an email or phone number of corresponding author,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Citations,Publications about this research,Identifier USDA-ARS,"Permanent identifier like DOI, Handle, PURL, etc.",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Citations,Publications about this research,Description,A helpful description regarding the citations,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Citations,Publications about this research,Citation,The complete citation of the supporting reference,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Treatments,Research treatments,Treatment ID,The TreatmentID must be a unique string of up to 5 characters without spaces or special characters. The system will add the SiteID to this string to make it unique across all locations.,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Treatments,Research treatments,Start Date,The date the defining treatment for the plot began,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+Treatments,Research treatments,Treatment Descriptor,Optional description of the crop management practices implemented,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Treatments,Research treatments,Rotation Descriptor,Crop rotation information,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Treatments,Research treatments,Tillage Descriptor,Tillage practice,CHARACTER,NA,NA,NA,NA,NA,Conservation Till | Conventional Till | Direct Seeding | No Till | None | Not Reported | Strip Till | Sub Till | Sweep Tillage,N,Y
+Treatments,Research treatments,N Treatment Descriptor,Nitrogen level for this treatment - can be a specific amount (100 kgN/Ha or a level (e.g.. medium),CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Treatments,Research treatments,Project Scenario,Defines the aim of GRACEnet or REAP,CHARACTER,NA,NA,NA,NA,NA,1=Business as usual | 2=Max carbon sequestration | 3=Min net GHG emissions | 4=Max overall environmental benefits | 5=Other | A=No removal | B=Corn cob removal | C=Around 25% removal | D=Around 50% removal | E=Around 75% removal | F=Complete removal,N,Y
+Treatments,Research treatments,Fertilizer Amendment Class,"Organic, Synthetic, Integrated (combination of Organic and Synthetic), or None",CHARACTER,NA,NA,NA,NA,NA,Integrated (Combination of organic and synthetic) | None | Organic | Synthetic,N,Y
+Treatments,Research treatments,Cover Crop,Cover crop used,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Treatments,Research treatments,Residue Removal,Method of residue removal,CHARACTER,NA,NA,NA,NA,NA,No | Partial | Yes,N,Y
+Treatments,Research treatments,Irrigation,Whether irrigation was used,CHARACTER,NA,NA,NA,NA,NA,Yes | No,N,Y
+Treatments,Research treatments,Organic Management,Whether organic management was used,CHARACTER,NA,NA,NA,NA,NA,Yes | No,N,Y
+Treatments,Research treatments,Grazing Rate,The grazing rate used,CHARACTER,NA,NA,NA,NA,NA,High | Low | Medium | None,N,Y
+Treatments,Research treatments,Animal (species),The animal species being recorded,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Treatments,Research treatments,Operation,Animal operation,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+Treatments,Research treatments,ARS Projects,The ARS project that applies to this experiment,CHARACTER,NA,NA,NA,NA,NA,AgAR | GRACEnet | LTAR | NUOnet | Other | REAP | SoilBiology,N,Y
+ExperUnits,Experimental units or plot identification,Exp Unit 1,Block identifier--a string of up to 9 characters without spaces or special characters.,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Exp Unit 1 Descriptor,"The spatial scale for Exp Unit1 (e.g., block, plot, subplot, rep).",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Exp Unit 2,Plot identifier--a string of up to 9 characters without spaces or special characters.  ,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Exp Unit 2 Descriptor,"The spatial scale for Exp Unit 2 (e.g., block, plot, subplot, rep).",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Exp Unit 3,Can be used as subplot identifier to Exp Unit2--a string of up to 9 characters without spaces or special characters.  ,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Exp Unit 3 Descriptor,"The spatial scale for Exp Unit 3 (e.g., block, plot, subplot, rep).",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Exp Unit 4,Can be used as subplot identifier to Exp Unit3--a string of up to 9 characters without spaces or special characters.  ,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Exp Unit 4 Descriptor,"The spatial scale for Exp Unit 4 (e.g., block, plot, subplot, rep).",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Exp Unit 5,Can be used as subplot identifier to Exp Unit4--a string of up to 9 characters without spaces or special characters.  ,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Exp Unit 5 Descriptor,"The spatial scale for Exp Unit 5 (e.g., block, plot, subplot, rep).",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Exp Unit ID,Automatically combines experimental units to produce unique identifiers,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Treatment ID,Treatment identifier for each experimental unit within a site,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Field ID,Unique field identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Start Date,The date the experiment began,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+ExperUnits,Experimental units or plot identification,End Date,The date the experiment ended,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+ExperUnits,Experimental units or plot identification,Change in Management,"If management or treatments of the experimental unit changed, those adjustments are specified here ",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Soil Series,"The soil series name of the study site, consistent with the NRCS official soil series descriptions",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Soil Classification,The soil classification or soil classification system of the study site. Specify if using FAO or other system.,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Landscape Position,sideslope | summit | toeslope | NA,CHARACTER,NA,NA,NA,NA,NA,N/A | Sideslope | Summit | Toeslope,N,Y
+ExperUnits,Experimental units or plot identification,Latitude,Latitude in decimal format in North America specified out to 6 decimal places,NUMERIC,decimal degrees,NA,-75,75,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Longitude,Longitude in decimal format in North America specified out to 6 decimal places,NUMERIC,decimal degrees,NA,-180,180,NA,NA,N,Y
+ExperUnits,Experimental units or plot identification,Slope %,Slope percent,INTEGER,%,NA,0,10,NA,0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 20,N,Y
+ExperUnits,Experimental units or plot identification,Exp Unit Size m2,The area of the experimental unit,NUMERIC,m2,NA,0,999999,NA,NA,N,Y
+WeatherStation,Where the weather station is located,Site ID,"Required. Where data was collected. Enter a 2 digit state, 2 digit city/town code with up to 4 additional characters for unique experimental ID with no spaces or special characters. E.g., MNMOBRR1 representing Minnesota, Morris, Field BRR1.",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+WeatherStation,Where the weather station is located,Field ID,The field ID the weather station is associated with,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+WeatherStation,Where the weather station is located,Date,The date the weather station began collecting the data,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+WeatherStation,Where the weather station is located,Weather Station ID,A unique value for each weather station,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+WeatherStation,Where the weather station is located,Weather Latitude decimal deg,Latitude in decimal format in North America specified out to 6 decimal places,NUMERIC,decimal degrees,NA,-75,75,NA,NA,N,Y
+WeatherStation,Where the weather station is located,Weather Longitude decimal deg,Longitude in decimal format in North America specified out to 6 decimal places,NUMERIC,decimal degrees,NA,-180,180,NA,NA,N,Y
+WeatherStation,Where the weather station is located,Weather Elevation m,Elevation of the site,NUMERIC,m,NA,-50,5000,NA,NA,N,Y
+WeatherStation,Where the weather station is located,Distance from Field m,Distance from plots used to the weather station,NUMERIC,m,NA,1,10000,NA,NA,N,Y
+WeatherStation,Where the weather station is located,Direction from Field,Direction of the weather station in relation to the plots (e.g. NE),CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+WeatherStation,Where the weather station is located,Weather Station URL,The web site for the weather station that provided this data,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+WeatherDaily,Weather data from the site,Site ID,"Required. Where data was collected. Enter a 2 digit state, 2 digit city/town code with up to 4 additional characters for unique experimental ID with no spaces or special characters. E.g., MNMOBRR1 representing Minnesota, Morris, Field BRR1.",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+WeatherDaily,Weather data from the site,Field ID,The field ID the weather station is associated with,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+WeatherDaily,Weather data from the site,Weather Date,Daily weather date,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+WeatherDaily,Weather data from the site,Weather time,Daily weather time,CHARACTER,NA,NA,hours:minutes,0:01,0.999988426,NA,N,Y
+WeatherDaily,Weather data from the site,Weather Station ID,A unique value for each weather station,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+WeatherDaily,Weather data from the site,Temp Max degC,Maximum daily temperature,NUMERIC,°C,NA,NA,-20,40,NA,N,Y
+WeatherDaily,Weather data from the site,Temp Min degC,Minimum daily temperature,NUMERIC,°C,NA,NA,-20,40,NA,N,Y
+WeatherDaily,Weather data from the site,Precip mm/d,Daily precipitation amounts,CHARACTER,NA,mm/d ,NA,0,250,NA,N,Y
+WeatherDaily,Weather data from the site,Bad Value Flag,"If weather data for a particular day are missing or suspect, a value of -999 or blank value",CHARACTER,NA,NA,NA,-999,-999,NA,N,Y
+WeatherDaily,Weather data from the site,RH %,Relative humidity,NUMERIC,%,NA,NA,0,100,NA,N,Y
+WeatherDaily,Weather data from the site,Dew Point degC,Dew point,NUMERIC,°C,NA,NA,-20,40,NA,N,Y
+WeatherDaily,Weather data from the site,Wind Speed m/s,Average wind speed,CHARACTER,NA,m/s,NA,0,30,NA,N,Y
+WeatherDaily,Weather data from the site,Solar Radiation Veg MJ/m2/d,Solar radiation measured on vegetated ground (e.g. under grass or in crop rows),CHARACTER,NA,MJ/m2/d,NA,0,55,NA,N,Y
+WeatherDaily,Weather data from the site,Solar Radiation Bare MJ/m2/d,Solar radiation measured on bare soil (e.g. between crop rows),CHARACTER,NA,MJ/m2/d,NA,0,55,NA,N,Y
+WeatherDaily,Weather data from the site,Soil Temp 5cm degC,Soil temperature average to 5 cm depth,NUMERIC,°C,NA,NA,-20,40,NA,N,Y
+WeatherDaily,Weather data from the site,Soil Temp 10cm degC,Soil temperature average to 10 cm depth,NUMERIC,°C,NA,NA,-20,40,NA,N,Y
+WeatherDaily,Weather data from the site,Wind Direction deg from N,Average wind direction in degrees from N,NUMERIC,NA,deg from N,NA,0,360,NA,N,Y
+WeatherDaily,Weather data from the site,Open Pan Evap mm/d,Evaporation measured as open pan,NUMERIC,NA,mm/d,NA,0,15,NA,N,Y
+WeatherDaily,Weather data from the site,Closed Pan Evap mm/d,Evaporation measured as closed pan,NUMERIC,NA,mm/d,NA,0,15,NA,N,Y
+WeatherDaily,Weather data from the site,Atmos N Deposition kg/ha/d,Wet plus dry atmospheric Nitrogen deposition,NUMERIC,NA,kg/ha/d,NA,0,0.5,NA,N,Y
+WeatherDaily,Weather data from the site,Total Net Radiation MJ/m2/d,Total solar radiation (vegetated and bare ground),NUMERIC,NA,MJ/m2/d,NA,0,55,NA,N,Y
+WeatherDaily,Weather data from the site,Snow mm/d,Precipitation / day received as snow,NUMERIC,NA,mm/d,NA,0,1000,NA,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Date,Date the amendment occurred (e.g. the fertilization day),DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Amend Placement,Amendment placement,CHARACTER,NA,NA,NA,NA,NA,Banded Subsurface | Banded Surface | Broadcast Incorporated | Broadcast Spray | Broadcast Subsurface | Broadcast Surface | Dribbled Over Seed | Injected | N/A | Seed Coating | Surface | Surface-dribble | Direct by Animal,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Amend Depth cm,Depth at which the amendment was placed,NUMERIC,cm,NA,NA,0,50,NA,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Amend Type,Type of amendment used,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Total Amend Amount kg/ha,Amount of the amendment used,NUMERIC,NA,kg/ha,NA,0,500,NA,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Total N Amount kgN/ha,Weight of nitrogen,NUMERIC,NA,kg/ha,NA,0,500,NA,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Total P Amount kgP/ha,Weight of phosphorus,NUMERIC,NA,kg/ha,NA,0,500,NA,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Total K Amount kgK/ha,Weight of potassium,NUMERIC,NA,kg/ha,NA,0,500,NA,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Total Pest Amount kg/ha,Amount of all active ingredients applied,NUMERIC,NA,kg/ha,NA,0,NA,NA,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Active Ingredient Type,"The active ingredient (or additive, surfactant, foam reducer, oil, etc.) used ",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Pest Target,Target species for this application,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Pest Placement,Pesticide placement method,CHARACTER,NA,NA,NA,NA,NA,Air Blast Sprayer | Airplane | Chemigation | Hand Broadcast | Seed Treated | Tractor mounted spray boom | Under soil with planter,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Irrigation Amount cm,Irrigation amount,NUMERIC,cm,NA,NA,0,10,NA,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Irrigation Type,Irrigation type used,CHARACTER,NA,NA,NA,NA,NA,Center Pivot | Drip | Flood | Furrow/Ditch | Lateral Move Sprinkler | Linear Move Sprinkler | Rotation | Seepage | Side Roll | Solid Set Sprinklers | Supplemental | Surface | Traveling Gun | Wheel Line,N,Y
+MgtAmendments,"Amendments added, fertilizer, pesticides, irrigation",Irrigation N mg/L,Irrigation Nitrogen content,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MgtPlanting,How the site was planted,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtPlanting,How the site was planted,Date,Date the planting event occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MgtPlanting,How the site was planted,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtPlanting,How the site was planted,Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtPlanting,How the site was planted,Cultivar,Name of the crop variety,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtPlanting,How the site was planted,Planting Rate #seeds/ha,Number of seeds/seedlings planted,INTEGER,NA,seeds/ha,NA,0,150000,NA,N,Y
+MgtPlanting,How the site was planted,Planting Density kg/ha,Planting density,NUMERIC,NA,kg/ha,NA,0,150000,NA,N,Y
+MgtPlanting,How the site was planted,Planting Method,Planting method used,CHARACTER,NA,NA,NA,NA,NA,Broadcast | Disk | Drill | Row | Twin Row,N,Y
+MgtPlanting,How the site was planted,Planting Depth cm,Depth at which the seeds/seedlings were planted,NUMERIC,cm,NA,NA,0,50,NA,N,Y
+MgtPlanting,How the site was planted,Row Width cm,Average width of the row planted,NUMERIC,cm,NA,NA,0,100,NA,N,Y
+MgtTillage,How the site was tilled,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtTillage,How the site was tilled,Date,Date the tillage operation occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MgtTillage,How the site was tilled,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtTillage,How the site was tilled,Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtTillage,How the site was tilled,Tillage Event,Tillage event,CHARACTER,NA,NA,NA,NA,NA,Between-row Cultivator | Chisel (or Chisel Plow) | Cultimulcher | Cultipacker | Disk | Disk Rip | Field Cultivator (between row weed control) | Field Cultivator (seedbed preparation) | Field Roll | Flail | Harrow (raking event) | Land Level | Moldboard Plow | Ridge Till | Ripping | Rod-weed | Rotary Hoed | Rotary Hoed | Rototiller | Springtooth Harrow and Cultipacker | Strip Till | Subsoil | Sweep Till (for weed control prior to planting),N,Y
+MgtTillage,How the site was tilled,Tillage Event Depth cm,Depth of the tillage event,NUMERIC,cm,NA,NA,0,200,NA,N,Y
+MgtTillage,How the site was tilled,Tillage Event Method,"Description of the tillage event (e.g. number of passes, timing of event, and/or placement, size, or specific type of implement)",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtGrowthStages,The stage of plant development at time of observation,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtGrowthStages,The stage of plant development at time of observation,Date,Date the crop was at the specified growth stage,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MgtGrowthStages,The stage of plant development at time of observation,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtGrowthStages,The stage of plant development at time of observation,Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtGrowthStages,The stage of plant development at time of observation,Growth Stage,Growth stage,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtResidue,How residue was removed from the experiment,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtResidue,How residue was removed from the experiment,Date,Date the residue was removed,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MgtResidue,How residue was removed from the experiment,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtResidue,How residue was removed from the experiment,Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtResidue,How residue was removed from the experiment,Equipment Type,Equipment used for non-grain harvest,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtResidue,How residue was removed from the experiment,Cutting Height/Material Harvested,"Can be description (e.g. low, high, etc.) or actual cutting height in cm, or material harvested",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtResidue,How residue was removed from the experiment,Rows Harvested %,Percent of rows where residue was harvested,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MgtResidue,How residue was removed from the experiment,Stand Age years,Age in years of the perennial stand,INTEGER,NA,NA,NA,0,200,NA,N,Y
+MgtResidue,How residue was removed from the experiment,Stage at Harvest,The growth stage when the residue was harvested,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtGrazing,Grazing information,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtGrazing,Grazing information,Start Date,The date the treatment or event was implemented,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MgtGrazing,Grazing information,End Date,The date the treatment or event ended,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MgtGrazing,Grazing information,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtGrazing,Grazing information,Stocking Rate #animals/ha,Stocking rate,NUMERIC,NA,#animals/ha,NA,0,200,NA,N,Y
+MgtGrazing,Grazing information,Animal Species,Animal species,CHARACTER,NA,NA,NA,NA,NA,Beef Cattle | Bison | Dairy Cattle | Donkey | Goat | Horse | Llama | Sheep | None,N,Y
+MgtGrazing,Grazing information,Animal Class,Type of animal,CHARACTER,NA,NA,NA,NA,NA,Dam with 1 offspring | Dam with 2 offspring | Dam with 3 offspring | Intact male | Juvenile female | Lactating female | Mature female | Neutered male,N,Y
+MgtGrazing,Grazing information,Other Events,Other information about grazing events,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MgtGrazing,Grazing information,Burn Frequency years between burns,The number of years between prescribed burn events,INTEGER,NA,years/burn,NA,0,10,NA,N,Y
+MgtGrazing,Grazing information,Burn Intensity,The severity of the burn event,CHARACTER,NA,NA,NA,NA,NA,High | Low | Medium,N,Y
+MeasNutrEff,Measurements of nutrient use efficiencies,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasNutrEff,Measurements of nutrient use efficiencies,Date,Date the sampling occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,Y,N
+MeasNutrEff,Measurements of nutrient use efficiencies,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasNutrEff,Measurements of nutrient use efficiencies,Growth Stage,Growth stage,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasNutrEff,Measurements of nutrient use efficiencies,Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasNutrEff,Measurements of nutrient use efficiencies,Plant Fraction,Specifically what was analyzed,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasNutrEff,Measurements of nutrient use efficiencies,Fraction N kgN/ha,N Uptake in plant fraction,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrEff,Measurements of nutrient use efficiencies,Nitrogen Use Efficiency %,"Nitrogen use efficiency = (Nutrient uptake F, kg - Nutrient uptake C, kg)/(Quantity of nutrient applied, kg) * 100",NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasNutrEff,Measurements of nutrient use efficiencies,Agronomic Efficiency kg/kg,"Agronomic efficiencyNitrogen = (Yield F, kg - Yield C, kg)/(Quantity of nutrient applied, kg)",NUMERIC,NA,kg/kg,NA,0,100,NA,N,Y
+MeasNutrEff,Measurements of nutrient use efficiencies,Nutrient efficiency ratio kg/kg,"Nutrient efficiency ratioNitrogen = (Units of Yield, kg )/(Units of element in tissue (Nitrogen), kg)",NUMERIC,NA,kg/kg,NA,0,100,NA,N,Y
+MeasNutrEff,Measurements of nutrient use efficiencies,Nitrogen15 Use Efficiency kgN/ha,15N Report total aboveground N uptake = For this example (Harvested Grain N + Harvested Residue N ),NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Date,Date the soil sampling occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Upper cm,Upper soil depth of the sample,NUMERIC,cm,NA,NA,0,200,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Lower cm,Lower soil depth of the sample,NUMERIC,cm,NA,NA,0,200,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Model if simulated ,Model used if data are simulated. All data are assumed to be observed if blank.,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Sand %,Percentage of soil that is sand,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Silt %,Percentage of soil that is silt,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Clay %,Percentage of soil that is clay,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Bulk Density g/cm3,Bulk density of the sample,NUMERIC,NA,g/cm3,NA,0,3,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Wilting Point % volume,Wilting point,NUMERIC,%,NA,NA,5,50,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Field Capacity % volume,Field capacity,NUMERIC,%,NA,NA,0,0.01,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Ksat cm/sec,Saturated hydraulic conductivity,NUMERIC,NA,cm/sec,NA,0,1000,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Moisture Release Curve,Does this collect moisture release curve data?,CHARACTER,NA,NA,NA,NA,NA,Yes | No,N,Y
+MeasSoilPhys,Physical soil measurements,Soil Heat Flux MJ/m2,Soil heat flux,NUMERIC,NA,MJ/m^2,NA,0,NA,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Aggregation %,Micro or macro-aggregation,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasSoilPhys,Physical soil measurements,H2O Stable Aggregates %,Water stable aggregate,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Near-Infrared C gC/kg,Total amount of carbon measured when using infrared spectroscopy,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Bulk Density STD g/cm3,Bulk density standard deviation if Bulk Density field was entered as a Mean,NUMERIC,NA,g/cm3,NA,0,3,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Wilting Point STD % volume,Wilting point standard deviation if Wilting Point field was entered as a Mean,NUMERIC,%,NA,NA,0,50,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Field Capacity STD % volume,Field capacity standard deviation if Field Capacity field was entered as a Mean,NUMERIC,%,NA,NA,0,0.01,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Ksat STD cm/sec,Ksat standard deviation if Ksat field was entered as a Mean,NUMERIC,NA,cm/sec,NA,0,1000,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Soil Heat Flux STD MJ/m2,Soil heat flux standard deviation if Soil Heat Flux field was entered as a Mean,NUMERIC,NA,MJ/m2,NA,0,NA,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Macro Aggregates STD %,Macro Aggregates standard deviation if Macro Aggregates field was entered as a Mean,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasSoilPhys,Physical soil measurements,H2O Stable Aggregates STD %,H2O Stable Aggregates standard deviation if H2O Stable Aggregates field was entered as a Mean,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasSoilPhys,Physical soil measurements,Near-Infrared C STD gC/kg,Near-Infrared C standard deviation if Near-Infrared C field was entered as a Mean,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Date,Date the soil sampling occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Upper cm,Upper soil depth of the sample,NUMERIC,cm,NA,NA,0,200,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Lower cm,Lower soil depth of the sample,NUMERIC,cm,NA,NA,0,200,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Model if simulated ,Model used if data are simulated. All data are assumed to be observed if blank.,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasSoilChem,Chemical soil measurements,pH,Soil pH using the calcium chloride method,CHARACTER,NA,NA,NA,0,14,NA,N,Y
+MeasSoilChem,Chemical soil measurements,TSC gC/kg,Total soil carbon,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,TSN gN/kg,Total soil nitrogen,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Inorganic C gC/kg,Soil inorganic carbon,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Organic C gC/kg,Soil organic carbon,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Mineral C gC/kg,Soil mineral associated carbon,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,CEC cmol/kg,CEC,NUMERIC,NA,cmol/kg,NA,0,NA,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Electric Conduc siemens/m,Soil electrical conductivity,NUMERIC,NA,S/m,NA,0,1,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Soluble C mgC/kg,Soluble organic carbon - required if there is drainage in the system,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,NH4 mgN/kg,Soil ammonium,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,NO3 mgN/kg,Soil nitrate,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,P mgP/kg,Soil phosphorus,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,K mgK/kg,Soil potassium,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Ca mgCa/kg,Extractable calcium,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Mg mgMg/kg,Extractable magnesium,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Cu mgCu/kg,Extractable copper,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Fe mgFe/kg,Extractable iron,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Mn mgMN/kg,Extractable manganese,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Zn mgZn/kg,Extractable zinc,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Mineralizable N gN/kg,Potentially mineralizable nitrogen,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Nitrite mgN/kg,Nitrites,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Cesium-137 Bq/m2,Cesium,NUMERIC,NA,Bq/m2,NA, 0,10000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Lead-210 Bq/m2,Lead,NUMERIC,NA,Bq/m2,NA, 0,10000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Beryllium-7 Bq/m2,Beryllium,NUMERIC,NA,Bq/m2,NA, 0,10000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,pH STD,Soil pH using the calcium chloride method,CHARACTER,NA,NA,NA,0,14,NA,N,Y
+MeasSoilChem,Chemical soil measurements,TSC STD gC/kg,Total soil carbon - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,TSN STD gN/kg,Total soil nitrogen - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Inorganic C STD gC/kg,Soil inorganic carbon - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Organic STD gC/kg,Soil organic carbon - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Mineral C STD gC/kg,Soil mineral associated carbon - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,CEC STD cmol/kg,CEC - standard deviation,NUMERIC,NA,cmol/kg,NA,0,NA,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Electric Conduc STD siemens/m,Soil electrical conductivity - standard deviation,NUMERIC,NA,dS/m,NA,0,1,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Soluble C STD mgC/kg,Soluble organic carbon - required if there is drainage in the system - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,NH4 STD mgN/kg,Soil ammonium - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,NO3 STD mgN/kg,Soil nitrate - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,P STD mgP/kg,Soil phosphorus - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,K STD mgK/kg,Soil potassium - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Ca STD mgCa/kg,Extractable calcium - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Mg STD mgMg/kg,Extractable magnesium - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Cu STD mgCu/kg,Extractable copper - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Fe STD mgFe/kg,Extractable iron - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Mn STD mgMN/kg,Extractable manganese - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Zn STD mgZn/kg,Extractable zinc - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Mineralizable N STD gN/kg,Potentially mineralizable nitrogen - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Nitrite STD mgN/kg,Nitrites - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Cesium-137 STD Bq/m2,Cesium - standard deviation,NUMERIC,NA,Bq/m^2,NA, 0,10000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Lead-210 STD Bq/m2 ,Lead - standard deviation,NUMERIC,NA,Bq/m^2,NA, 0,10000,NA,N,Y
+MeasSoilChem,Chemical soil measurements,Beryllium-7 STD Bq/m2,Beryllium - standard deviation,NUMERIC,NA,Bq/m^2,NA, 0,10000,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Date,Date the soil sampling occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Upper cm,Upper soil depth of the sample,NUMERIC,cm,NA,NA,0,200,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Lower cm,Lower soil depth of the sample,NUMERIC,cm,NA,NA,0,200,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Model if simulated ,Model used if data are simulated. All data are assumed to be observed if blank.,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Glucosidase mg/kg/hr,Hydrolysis rate of p-nitrophenyl-B-D-glucopyranoside to p-nitrophenol,NUMERIC,NA,mg/kg/hr,NA,0,NA,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Glucosaminidase mg/kg/hr,Hydrolysis rate of p-nitrophenyl-N-acetyl-B-D-glucosaminide to p-nitrophenol,NUMERIC,NA,mg/kg/hr,NA,0,NA,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Acid Phosphatase mg/kg/hr,Hydrolysis rate of p-nitrophenol phoshate at pH 6.5 to p-nitrophenol,NUMERIC,NA,mg/kg/hr,NA,0,NA,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Alk Phosphatase mg/kg/hr,Hydrolysis rate of p-nitrophenol phoshate at pH 11.0 to p-nitrophenol,NUMERIC,NA,mg/kg/hr,NA,0,NA,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Fluorescein Diacetate Hydrol mg/kg/hr,Hydrolysis rate fluorescein diacetate to fluoresein,NUMERIC,NA,mg/kg/hr,NA,0,NA,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Glomalin g/kg,Glomali-related soil protein,NUMERIC,NA,g/kg,NA,0,NA,NA,N,Y
+MeasSoilBiol,Biological soil measurements,FAME,Indicate whether the project collects these data,CHARACTER,NA,NA,NA,NA,NA,Yes | No,N,Y
+MeasSoilBiol,Biological soil measurements,PLFA,Indicate whether the project collects these data,CHARACTER,NA,NA,NA,NA,NA,Yes | No,N,Y
+MeasSoilBiol,Biological soil measurements,DNA,Indicate whether the project collects these data,CHARACTER,NA,NA,NA,NA,NA,Yes | No,N,Y
+MeasSoilBiol,Biological soil measurements,Iden Plant Material gC/kg,The amount of organic plant material greater than 2mm in diameter found in soil sample,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilBiol,Biological soil measurements,POM gC/kg,Particulate organic matter,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Microbe Bio C mgC/kg,The amount of carbon in the microbial biomass,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Microbe Bio N mgN/kg,The amount of nitrogen in the microbial biomass,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Glucosidase STD mg/kg/hr,The hydrolysis rate of p-nitrophenyl-B-D-glucopyranoside to p-nitrophenol - standard deviation,NUMERIC,NA,mg/kg,NA,0,NA,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Glucosaminidase STD mg/kg/hr,The hydrolysis rate of p-nitrophenyl-N-acetyl-B-D-glucosaminide to p-nitrophenol - standard deviation,NUMERIC,NA,mg/kg,NA,0,NA,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Acid Phosphatase STD mg/kg/hr,The hydrolysis rate of p-nitrophenol phoshate at pH 6.5 to p-nitrophenol - standard deviation,NUMERIC,NA,mg/kg,NA,0,NA,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Alk Phosphatase STD mg/kg/hr,The hydrolysis rate of p-nitrophenol phoshate at pH 11.0 to p-nitrophenol - standard deviation,NUMERIC,NA,mg/kg,NA,0,NA,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Fluorescein Diacetate Hydrol STD mg/kg/hr,The hydrolysis rate fluorescein diacetate to fluoresein - standard deviation,NUMERIC,NA,mg/kg/hr,NA,0,NA,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Glomalin STD g/kg,The glomalin related soil protein - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Iden Plant Material STD gC/kg,The amount of organic plant material greater than 2mm in diameter found in soil sample - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilBiol,Biological soil measurements,POM STD gC/kg,Particulate organic matter - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Microbe Bio C STD mgC/kg,The amount of carbon in the microbial biomass - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilBiol,Biological soil measurements,Microbe Bio N STD mgN/kg,The amount of nitrogen in the microbial biomass - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000000,NA,N,Y
+MeasSoilCover,Percentage of soil covered with plant residue,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasSoilCover,Percentage of soil covered with plant residue,Date,Date the cover was measured,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MeasSoilCover,Percentage of soil covered with plant residue,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasSoilCover,Percentage of soil covered with plant residue,Timing Descriptor,The stage when soil cover was measured,CHARACTER,NA,NA,NA,NA,NA,Mid winter | Post harvest | Post harvest (2-4 weeks after harvest) | Post harvest (within 2 weeks of harvest) | Post planting | Post tillage | Pre plant | Pre tillage | Winter,N,Y
+MeasSoilCover,Percentage of soil covered with plant residue,Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasSoilCover,Percentage of soil covered with plant residue,Soil w/Residue %,Percent of soil with residue cover,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasARGenes,Soil biology,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasARGenes,Soil biology,Date,Date the sampling occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MeasARGenes,Soil biology,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasARGenes,Soil biology,Sample Type,Sample type,CHARACTER,NA,NA,NA,NA,NA,Soil | Water | Manure | Feces | Urine | Wastewater | Biosolids | Air | Sediment | Plant | Litter,N,Y
+MeasARGenes,Soil biology,Sample Details,"Notes about the sample, for example, the plant species, source of manure, etc.",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasARGenes,Soil biology,Upper,Upper soil or water depth of the sample,NUMERIC,cm,NA,NA,0,200,NA,N,Y
+MeasARGenes,Soil biology,Lower,Lower soil or water depth of the sample,NUMERIC,cm,NA,NA,0,200,NA,N,Y
+MeasARGenes,Soil biology,Target,Target antibiotic resistance genes,CHARACTER,NA,NA,NA,NA,NA,16S rRNA | blaTEM | ctx-m 32 | ctx-m-1 | ermB | ermF | intl1 | sul1 | sul2 | tetA | tetB | tetC | tetD | tetE | tetG | tetK | tetL | tetM | tetO | tetP | tetQ | tetS | tetW | tetX,N,Y
+MeasARGenes,Soil biology,Presence or Absence of Target,Presence or absence of the target if conducting standard PCR / Blank means not done,CHARACTER,NA,NA,NA,NA,NA,present | absent,N,Y
+MeasARGenes,Soil biology,Value,Below detection limit= -999 / Blank means not done,CHARACTER,NA,qPCR,NA,NA,NA,NA,N,Y
+MeasARGenes,Soil biology,Units,Units,CHARACTER,NA,NA,NA,NA,NA,copies/g dry wt. | gene copies/g wet wt. | gene copies/mL | gene copies/m3 air,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",Date,Date the gas sampling occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",Time,The time gas sampling started in military time (1 p.m.=13:00),CHARACTER,NA,NA,hours:minutes,0:01,23:59,NA,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",Chamber Placement,Chamber placement or measurement method,CHARACTER,NA,NA,NA,NA,NA,"2:1 interrow:row | Across rows | Between rows | Flux Tower | In row | Over clipped grass | Over grass | Rangeland | 1 in row, 1 between rows",N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",N2O gN/ha/d,Nitrous oxide,NUMERIC,NA,g/ha/d,NA,-100,10000,NA,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",N2O Interp=0 Obs=1,"Enter the number 1 if preceeding data is from an actual field measurement, or enter the number 0 if data is interpolated.",NUMERIC,NA,NA,NA,0,1,1 | 0,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",CO2 gC/ha/d,Carbon dioxide,NUMERIC,NA,g/ha/d,NA,-100,10000,NA,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",CO2 Interp=0 Obs=1,"Enter the number 1 if preceeding data is from an actual field measurement, or enter the number 0 if data is interpolated.",NUMERIC,NA,NA,NA,0,1,1 | 0,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",CH4 gC/ha/d,Methane,NUMERIC,NA,g/ha/d,NA,-10000,10000,NA,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",CH4 Interp=0 Obs=1,"Enter the number 1 if preceeding data is from an actual field measurement, or enter the number 0 if data is interpolated.",NUMERIC,NA,NA,NA,0,1,1 | 0,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",Air Temp degC,Air temperature at time of gas sampling,NUMERIC,°C,NA,NA,-20,40,NA,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",Soil Temp degC,Soil temperature at time of gas sampling,NUMERIC,°C,NA,NA,-20,40,NA,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",Soil Moisture % vol,Soil moisture content at time of gas sampling,NUMERIC,NA,% vol (cm3H2O/cm3),NA,1,100,NA,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",Soil Moisture Depth cm,Soil depth of measured soil temperature and moisture data,NUMERIC,cm,NA,NA,0,100,NA,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",N2O STD gN/ha/d,Standard deviation of nitrous oxide,NUMERIC,NA,g/ha/d,NA,-100,10000,NA,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",CO2 STD gC/ha/d,Standard deviation of carbon dioxide,NUMERIC,NA,g/ha/d,NA,-100,10000,NA,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",CH4 STD gC/ha/d,Standard deviation of methane,NUMERIC,NA,g/ha/d,NA,-10000,10000,NA,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",Air Temp STD degC,Air temperature at time of gas sampling - standard deviation,NUMERIC,°C,NA,NA,-20,40,NA,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",Soil Temp STD degC,Soil temperature at time of gas sampling - standard deviation,NUMERIC,°C,NA,NA,-20,40,NA,N,Y
+MeasGHGFlux,"Greenhouse gas flux--nitrous oxide, carbon dioxide and methane emission or consumption",Soil Moisture STD % vol,Soil moisture content at time of gas sampling - standard deviation,NUMERIC,NA,% vol (cm3H2O/cm3),NA,1,100,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Date,Date the harvesting event occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,Y,N
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Growth Stage,Growth stage,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Harvested Frac,What was harvested from experimental unit (describes residue removal treatment). Percent fractions removed are assumed to be approximations.,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Corn Ear Height cm,Height of the base of the ear above the ground,NUMERIC,cm,NA,NA,0,50000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Above G Biomass kg/ha,Above Ground Biomass includes grain at 0% moisture. (The total of what was removed and what remains in the field),NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Unit Grain Weight mg,Grain (kernel) weight,NUMERIC,mg,NA,NA,0,1000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Grain Dry Matt kg/ha,Harvested (dry) grain yield mass at 0% moisture,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Grain Moist %,Grain percent moisture at time of harvest (crop specific),NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Grain C kgC/ha,Carbon content of harvested grain,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Grain N kgN/ha,Nitrogen content of harvested grain,NUMERIC,NA,kg/ha,NA,0,10000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Harv NonGrain Bio kg/ha,Mass of dried harvested residue,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Harv Res Moist %,Percent moisture of harvested residue,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Harv Res C kgC/ha,Carbon content of harvested residue,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Harv Res N kgN/ha,Nitrogen content of harvested residue,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",NonHarv NonGrain Bio kg/ha,Mass of dried non-harvested residue (i.e. non-grain above ground plant material not removed during harvest event),NUMERIC,NA,kg/ha,NA,0,5000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",NonHarv Res Moist %,Percent moisture of non-harvested residue,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",NonHarv Res C kgC/ha,Carbon content of non-harvested residue,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",NonHarv Res N kgN/ha,Nitrogen content of non-harvested residue,NUMERIC,NA,kg/ha,NA,0,10000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Root Dry Matt kg/ha,Root dry matter,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Root Moist %,Root moisture,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Root C kgC/ha,Root carbon content,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Root N kgN/ha,Root nitrogen content,NUMERIC,NA,kg/ha,NA,0,10000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Corn Ear Height STD cm,Height of the base of the ear above the ground - standard deviation,NUMERIC,cm,NA,NA,0,50000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Above G Biomass STD kg/ha,Above Ground Biomass includes grain at 0% moisture. (The total of what was removed and what remains in the field) - standard deviation,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Unit Grain Weight STD mg,Grain (kernel) weight - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Grain Dry Matt STD kg/ha,Harvested (dry) grain yield mass at 0% moisture - standard deviation,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Grain Moist STD %,Grain percent moisture at time of harvest (crop specific) - standard deviation,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Grain C STD kgC/ha,Carbon content of harvested grain - standard deviation,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Grain N STD kgN/ha,Nitrogen content of harvested grain - standard deviation,NUMERIC,NA,kg/ha,NA,0,10000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Harv NonGrain Bio STD kg/ha,Mass of dried harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Harv Res Moist STD %,Percent moisture of harvested residue - standard deviation,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Harv Res C STD kgC/ha,Carbon content of harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Harv Res N STD kgN/ha,Nitrogen content of harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",NonHarv NonGrain Bio STD kg/ha,Mass of dried non-harvested residue (i.e. non-grain above ground plant material not removed during harvest event) - standard deviation,NUMERIC,NA,kg/ha,NA,0,5000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",NonHarv Res Moist STD %,Percent moisture of non-harvested residue - standard deviation,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",NonHarv Res C STD kgC/ha,Carbon content of non-harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",NonHarv Res N STD kgN/ha,Nitrogen content of non-harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,10000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Root Dry Matt STD kg/ha,Root dry matter - standard deviation,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Root Moist STD %,Root moisture - standard deviation,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Root C STD kgC/ha,Root carbon content - standard deviation,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasResidueMgnt,"Description for each experimental unit, what was harvested and what remained on the field after harvest.",Root N STD kgN/ha,Root nitrogen content - standard deviation,NUMERIC,NA,kg/ha,NA,0,10000,NA,N,Y
+MeasHarvestFraction,"What was harvested and what remained on the field - describes the mass of what was sampled - Mass, C and N of harvested plant fractions",Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasHarvestFraction,"What was harvested and what remained on the field - describes the mass of what was sampled - Mass, C and N of harvested plant fractions",Sampling Date,Date the sampling occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,Y,N
+MeasHarvestFraction,"What was harvested and what remained on the field - describes the mass of what was sampled - Mass, C and N of harvested plant fractions",Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasHarvestFraction,"What was harvested and what remained on the field - describes the mass of what was sampled - Mass, C and N of harvested plant fractions",Growth Stage,Growth stage,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasHarvestFraction,"What was harvested and what remained on the field - describes the mass of what was sampled - Mass, C and N of harvested plant fractions",Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasHarvestFraction,"What was harvested and what remained on the field - describes the mass of what was sampled - Mass, C and N of harvested plant fractions",Plant Fraction,What was analyzed,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasHarvestFraction,"What was harvested and what remained on the field - describes the mass of what was sampled - Mass, C and N of harvested plant fractions",Frac Dry Matt kg/ha,The dry biomass of the plant fraction,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasHarvestFraction,"What was harvested and what remained on the field - describes the mass of what was sampled - Mass, C and N of harvested plant fractions",Frac Moist %,The percent moisture of the plant fraction,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasHarvestFraction,"What was harvested and what remained on the field - describes the mass of what was sampled - Mass, C and N of harvested plant fractions",Frac C kgC/ha,The carbon content of the plant fraction,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasHarvestFraction,"What was harvested and what remained on the field - describes the mass of what was sampled - Mass, C and N of harvested plant fractions",Frac N kgN/ha,The nitrogen content of the plant fraction,NUMERIC,NA,kg/ha,NA,0,10000,NA,N,Y
+MeasHarvestFraction,"What was harvested and what remained on the field - describes the mass of what was sampled - Mass, C and N of harvested plant fractions",Grain Weight mg/kernel,The grain (kernel) weight,NUMERIC,NA,mg/kernel,NA,0,1000,NA,N,Y
+MeasHarvestFraction,"What was harvested and what remained on the field - describes the mass of what was sampled - Mass, C and N of harvested plant fractions",Frac Dry Matt STD kg/ha,The dry biomass of the plant fraction - standard deviation,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasHarvestFraction,"What was harvested and what remained on the field - describes the mass of what was sampled - Mass, C and N of harvested plant fractions",Frac Moist STD %,The percent moisture of the plant fraction - standard deviation,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasHarvestFraction,"What was harvested and what remained on the field - describes the mass of what was sampled - Mass, C and N of harvested plant fractions",Frac C STD kgC/ha,The carbon content of the plant fraction - standard deviation,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasHarvestFraction,"What was harvested and what remained on the field - describes the mass of what was sampled - Mass, C and N of harvested plant fractions",Frac N STD kgN/ha,The nitrogen content of the plant fraction - standard deviation,NUMERIC,NA,kg/ha,NA,0,10000,NA,N,Y
+MeasHarvestFraction,"What was harvested and what remained on the field - describes the mass of what was sampled - Mass, C and N of harvested plant fractions",Grain Weight STD mg/kernel,The grain (kernel) weight - standard deviation,NUMERIC,NA,mg/kernel,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Date,Date the sample was collected,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Growth Stage,Growth stage,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Plant Fraction,What was analyzed and harvested,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Glucan g/kg,Glucan from the plant fraction,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Xylan g/kg,Xylan from the plant fraction,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Galactan g/kg,Galactan from the plant fraction,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Arabinan g/kg,Arabinan from the plant fraction,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Mannan g/kg,Mannan from the plant fraction,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Lignin g/kg,Lignin from the plant fraction. Lignin should equal acid soluble lignin plus acid insoluble lignin.,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Neutral Det Fiber g/kg,Neutral det fiber from the plant fraction,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Acid Det Fiber g/kg,Acid det fiber from the plant fraction,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Acid Soluble Lignin g/kg,Acid soluble lignin from the plant fraction,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Acid Insoluble Lignin g/kg,Acid insoluble lignin from the plant fraction,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Crude Protein g/kg,Crude protein from the plant fraction,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Non-fiber Carbs g/kg,Non-fiber carbs from the plant fraction,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Ash g/kg,Ash from the plant fraction,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Glucan STD g/kg,Glucan from the plant fraction - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Xylan STD g/kg,Xylan from the plant fraction - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Galactan STD g/kg,Galactan from the plant fraction - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Arabinan STD g/kg,Arabinan from the plant fraction - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Mannan STD g/kg,Mannan from the plant fraction - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Lignin STD g/kg,Lignin from the plant fraction. Lignin should equal acid soluble lignin plus acid insoluble lignin. - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Neutral Det Fiber STD g/kg,Neutral det fiber from the plant fraction,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Acid Det Fiber STD g/kg,Acid det fiber from the plant fraction - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Acid Soluble Lignin STD g/kg,Acid soluble lignin from the plant fraction - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Acid Insoluble Lignin STD g/kg,Acid insoluble lignin from the plant fraction - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Crude Protein STD g/kg,Crude protein from the plant fraction - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Non-fiber Carbs STD g/kg,Non-fiber carbs from the plant fraction - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassCHO,Biomass carbohydrates,Ash STD g/kg,Ash from the plant fraction - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassEnergy,"Energy from biomass, calorific value",Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasBiomassEnergy,"Energy from biomass, calorific value",Date,Date the sample was collected,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MeasBiomassEnergy,"Energy from biomass, calorific value",Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasBiomassEnergy,"Energy from biomass, calorific value",Growth Stage,Growth stage,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasBiomassEnergy,"Energy from biomass, calorific value",Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasBiomassEnergy,"Energy from biomass, calorific value",Plant Fraction,What was analyzed and harvested,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasBiomassEnergy,"Energy from biomass, calorific value",Volatile Matter g/kg,Aromatic compounds lost during the heating process,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassEnergy,"Energy from biomass, calorific value",Mineral Matter g/kg,Mineral matter remaining after heating,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassEnergy,"Energy from biomass, calorific value",Gross Calorific Value MJ/kg,ASTM D 5865 Standard Test Method for Gross Calorific Value of Coal and Coke,NUMERIC,NA,MJ/kg,NA,0,NA,NA,N,Y
+MeasBiomassEnergy,"Energy from biomass, calorific value",Volatile Matter STD g/kg,Aromatic compounds lost during the heating process - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassEnergy,"Energy from biomass, calorific value",Ash STD g/kg,Mineral matter remaining after heating - standard deviation,NUMERIC,NA,g/kg,NA,0,1000,NA,N,Y
+MeasBiomassEnergy,"Energy from biomass, calorific value",Gross Calorific Value STD MJ/kg,ASTM D 5865 Standard Test Method for Gross Calorific Value of Coal and Coke - standard deviation,NUMERIC,NA,MJ/kg,NA,0,NA,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Date,Date the sample was collected,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Growth Stage,Growth stage,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Plant Fraction,What was analyzed and harvested,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,C Concentration g/kg,Carbon concentration of the plant fraction,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,N Concentration g/kg,Nitrogen concentration of the plant fraction,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,P Concentration g/kg,Phosphorus concentration of the plant fraction,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,K Concentration g/kg,Potassium concentration of the plant fraction,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Ca Concentration g/kg,Calcium concentration of the plant fraction,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Mg Concentration g/kg,Magnesium concentration of the plant fraction,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,S Concentration g/kg,Sulfur concentration of the plant fraction,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Na Concentration g/kg,Sodium concentration of the plant fraction,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Cl Concentration g/kg,Clorine concentration of the plant fraction,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Al Concentration mg/kg,Aluminum concentration of the plant fraction,NUMERIC,NA, mg/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,B Concentration mg/kg,Boron concentration of the plant fraction,NUMERIC,NA, mg/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Cu Concentration mg/kg,Copper concentration of the plant fraction,NUMERIC,NA, mg/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Fe Concentration mg/kg,Iron concentration of the plant fraction,NUMERIC,NA, mg/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Mn Concentration mg/kg,Manganese concentration of the plant fraction,NUMERIC,NA, mg/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Zn Concentration mg/kg,Zinc concentration of the plant fraction,NUMERIC,NA, mg/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,C Concentration STD g/kg,Carbon concentration of the plant fraction - standard deviation,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,N Concentration STD g/kg,Nitrogen concentration of the plant fraction - standard deviation,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,P Concentration STD g/kg,Phosphorus concentration of the plant fraction - standard deviation,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,K Concentration STD g/kg,Potassium concentration of the plant fraction - standard deviation,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Ca Concentration STD g/kg,Calcium concentration of the plant fraction - standard deviation,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Mg Concentration STD g/kg,Magnesium concentration of the plant fraction - standard deviation,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,S Concentration STD g/kg,Sulfur concentration of the plant fraction - standard deviation,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Na Concentration STD g/kg,Sodium concentration of the plant fraction - standard deviation,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Cl Concentration STD g/kg,Clorine concentration of the plant fraction - standard deviation,NUMERIC,NA, g/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Al Concentration STD mg/kg,Aluminum concentration of the plant fraction - standard deviation,NUMERIC,NA, mg/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,B Concentration STD mg/kg,Boron concentration of the plant fraction - standard deviation,NUMERIC,NA, mg/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Cu Concentration STD mg/kg,Copper concentration of the plant fraction - standard deviation,NUMERIC,NA, mg/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Fe Concentration STD mg/kg,Iron concentration of the plant fraction - standard deviation,NUMERIC,NA, mg/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Mn Concentration STD mg/kg,Manganese concentration of the plant fraction - standard deviation,NUMERIC,NA, mg/kg,NA,0,1000,NA,N,Y
+MeasBiomassMinAn,Mineral analysis of the biomass,Zn Concentration STD mg/kg,Zinc concentration of the plant fraction - standard deviation,NUMERIC,NA, mg/kg,NA,0,1000,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,Date,Date the harvest event occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,Species Mix,Crop or species mixture,CHARACTER,NA,NA,NA,NA,NA,Bahia | Bermuda | Bermuda-fescue | Big bluestem | Blue grama | Blue grama (dominant) | Crested wheatgrass | Fescue | Kentucky bluegrass (dominant) | Orchard grass | Orchard/fescue/clover/alfalfa/chicory | Orchardgrass/white clover | Ryegrass | Smooth brome | Sorghum sudan | Timothy | Western wheatgrass,N,Y
+MeasGrazingPlants,Grazing plants biomass,Growth Stage,Growth stage,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,Broadleaf vs Grass,Whether the grazing plants are broadleaf or grass,CHARACTER,NA,NA,NA,NA,NA,Broadleaf | Grass | Both,N,Y
+MeasGrazingPlants,Grazing plants biomass,AboveGr Bio kg/ha (dry),Dryweight of the above ground biomass,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,Surface Litter kg/ha (dry),Dryweight of the surface litter,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,Standing Dead kg/ha (dry),Dryweight of the standing dead plant material,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,LAI kg/ha (dry),Leaf area index - surface area leaves / surface area land,NUMERIC,NA,kg/ha,NA,0,10,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,Biomass N %,The nitrogen mass divided by the biomass and multiplied by 100.,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,Lignin %,The lignin mass divided by the biomass and multiplied by 100.,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,Ground Cover %,The surface area of vegetation divided by the surface area of land. ,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,AboveGr Bio C kgC/ha,Carbon content of above ground biomass,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,AboveGr Bio N kgN/ha,Nitrogen content of above ground biomass,NUMERIC,NA,kg/ha,NA,0,2500,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,BelowGr Bio C kgC/ha,Carbon content of below ground biomass,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,BelowGr Bio N kgN/ha,Nitrogen content of below ground biomass,NUMERIC,NA,kg/ha,NA,0,2500,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,ANPP C kgC/ha/yr,Carbon content of above ground net primary production (i.e. new growth),NUMERIC,NA,kg/ha/yr,NA,0,25000,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,ANPP N kgN/ha/yr,Nitrogen content of above ground net primary production (i.e. new growth),NUMERIC,NA,kg/ha/yr,NA,0,2500,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,BNPP C kgC/ha/yr,Carbon content of below ground primary production (i.e. new root material produced),NUMERIC,NA,kg/ha/yr,NA,0,25000,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,BNPP N kgN/ha/yr,Nitrogen content of below ground primary production (i.e. new root material produced),NUMERIC,NA,kg/ha/yr,NA,0,2500,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,AboveGr Bio STD kg/ha (dry),Dryweight of the above ground biomass - standard deviation,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,Surface Litter STD kg/ha (dry),Dryweight of the surface litter - standard deviation,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,Standing Dead STD kg/ha (dry),Dryweight of the standing dead plant material - standard deviation,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,LAI STD kg/ha,Leaf area index - surface area leaves / surface area land - standard deviation,NUMERIC,NA,kg/ha,NA,0,10,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,Biomass N STD %,The nitrogen mass divided by the biomass and multiplied by 100. - standard deviation,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,Lignin STD %,The lignin mass divided by the biomass and multiplied by 100. - standard deviation,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,Ground Cover STD %,The surface area of vegetation divided by the surface area of land. - standard deviation ,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,AboveGr Bio C STD kgC/ha,Carbon content of above ground biomass - standard deviation,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,AboveGr Bio N STD kgN/ha,Nitrogen content of above ground biomass - standard deviation,NUMERIC,NA,kg/ha,NA,0,2500,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,BelowGr Bio C STD kgC/ha,Carbon content of below ground biomass - standard deviation,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,BelowGr Bio N STD kgN/ha,Nitrogen content of below ground biomass - standard deviation,NUMERIC,NA,kg/ha,NA,0,2500,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,ANPP C STD kgC/ha/yr,Carbon content of above ground net primary production (i.e. new growth) - standard deviation,NUMERIC,NA,kg/ha/yr,NA,0,25000,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,ANPP N STD kgN/ha/yr,Nitrogen content of above ground net primary production (i.e. new growth) - standard deviation,NUMERIC,NA,kg/ha/yr,NA,0,2500,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,BNPP C STD kgC/ha/yr,Carbon content of below ground primary production (i.e. new root material produced) - standard deviation,NUMERIC,NA,kg/ha/yr,NA,0,25000,NA,N,Y
+MeasGrazingPlants,Grazing plants biomass,BNPP N STD kgN/ha/yr,Nitrogen content of below ground primary production (i.e. new root material produced) - standard deviation,NUMERIC,NA,kg/ha/yr,NA,0,2500,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasYieldNutUptake,Yield nutrient uptake,Sampling Date,Date the harvest event occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,Y,N
+MeasYieldNutUptake,Yield nutrient uptake,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasYieldNutUptake,Yield nutrient uptake,Growth Stage,Growth stage,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasYieldNutUptake,Yield nutrient uptake,Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasYieldNutUptake,Yield nutrient uptake,Plant Fraction,What was analyzed and harvested,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasYieldNutUptake,Yield nutrient uptake,Model if simulated ,Model used if data are simulated. All data are assumed to be observed if blank.,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Dry Matt kg/ha YNU,The dry biomass of the plant fraction,NUMERIC,NA,kg/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Moist % YNU,The percent moisture of the plant fraction,NUMERIC,%,NA,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac C kgC/ha YNU,The carbon content of the plant fraction,NUMERIC,NA,kg/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac N kgN/ha YNU,The nitrogen content of the plant fraction,NUMERIC,NA,kg/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac P kgP/ha,The phosphorus content of the plant fraction,NUMERIC,NA,g/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac K kgK/ha,The potassium content of the plant fraction,NUMERIC,NA,kg/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac S kgS/ha,The sulfur content of the plant fraction,NUMERIC,NA,kg/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Ca kgCa/ha,The calcium content of the plant fraction,NUMERIC,NA,kg/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Mg kgMg/ha,The magnesium content of the plant fraction,NUMERIC,NA,kg/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Cu gCu/ha,The copper content of the plant fraction,NUMERIC,NA,g/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Fe gFe/ha,The iron content of the plant fraction,NUMERIC,NA,g/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Mn gMn/ha,The manganese content of the plant fraction,NUMERIC,NA,g/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Zn gZn/ha,The zinc content of the plant fraction,NUMERIC,NA,g/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac B gB/ha,The boron content of the plant fraction,NUMERIC,NA,g/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Mo gMo/ha,The molybdenum content of the plant fraction,NUMERIC,NA,g/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Grain Weight mg/kernel YNU,Grain (kernel) weight,NUMERIC,NA,mg/kernel,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Dry Matt STD kg/ha YNU,The dry biomass of the plant fraction - standard deviation,NUMERIC,NA,kg/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Moist STD % YNU,The percent moisture of the plant fraction - standard deviation,NUMERIC,%,NA,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac C STD kgC/ha YNU,The carbon content of the plant fraction - standard deviation,NUMERIC,NA,kg/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac N STD kgN/ha YNU,The nitrogen content of the plant fraction - standard deviation,NUMERIC,NA,kg/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac P STD kgP/ha,The phosphorus content of the plant fraction - standard deviation,NUMERIC,NA,g/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac K STD kgK/ha,The potassium content of the plant fraction - standard deviation,NUMERIC,NA,kg/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac S STD kgS/ha,The sulfur content of the plant fraction - standard deviation,NUMERIC,NA,kg/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Ca STD kgCa/ha,The calcium content of the plant fraction - standard deviation,NUMERIC,NA,kg/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Mg STD kgMg/ha,The magnesium content of the plant fraction - standard deviation,NUMERIC,NA,kg/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Cu STD gCu/ha,The copper content of the plant fraction - standard deviation,NUMERIC,NA,g/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Fe STD gFe/ha,The iron content of the plant fraction -  standard deviation,NUMERIC,NA,g/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Mn STD gMn/ha,The manganese content of the plant fraction - standard deviation,NUMERIC,NA,g/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Zn STD gZn/ha,The zinc content of the plant fraction - standard deviation,NUMERIC,NA,g/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac B STD gB/ha,The boron content of the plant fraction - standard deviation,NUMERIC,NA,g/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Frac Mo STD gMo/ha,The molybdenum content of the plant fraction - standard deviation,NUMERIC,NA,g/ha,NA,NA,NA,NA,N,Y
+MeasYieldNutUptake,Yield nutrient uptake,Grain Weight STD mg/kernel YNU,Grain (kernel) weight - standard deviation,NUMERIC,NA,mg/kernel,NA,NA,NA,NA,N,Y
+MeasGasNutrientLoss,Gas nutrient loss,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasGasNutrientLoss,Gas nutrient loss,Date,Date the harvest event occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,Y,N
+MeasGasNutrientLoss,Gas nutrient loss,Time,Time that the harvest event occurred,CHARACTER,NA,NA,hr/min/sec,0:00:00,23:59:59,NA,Y,N
+MeasGasNutrientLoss,Gas nutrient loss,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasGasNutrientLoss,Gas nutrient loss,Growth Stage,Growth stage,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasGasNutrientLoss,Gas nutrient loss,Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasGasNutrientLoss,Gas nutrient loss,Sampling Start-Stop Interval,Sampling Start-Stop Interval,CHARACTER,NA,NA,NA,NA,NA,Start | Stop-Start | Stop,Y,N
+MeasGasNutrientLoss,Gas nutrient loss,Model if simulated ,Model used if data are simulated. All data are assumed to be observed if blank.,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasGasNutrientLoss,Gas nutrient loss,NOx-N g/ha/day,Greenhouse gasses - Nitric oxide per day,NUMERIC,NA,g/ha/day,NA,-100,10000,NA,N,Y
+MeasGasNutrientLoss,Gas nutrient loss,N2-N g/ha/day,Denitrification - Nitrogen per day,NUMERIC,NA,g/ha/day,NA,-100,10000,NA,N,Y
+MeasGasNutrientLoss,Gas nutrient loss,N2O-N g/ha/day,Denitrification - Nitrous oxide per day,NUMERIC,NA,g/ha/day,NA,-100,10000,NA,N,Y
+MeasGasNutrientLoss,Gas nutrient loss,NH3-N kg/ha/day,Ammonia volatilization per day,NUMERIC,NA,kg/ha/day,NA,-10000,50000,NA,N,Y
+MeasGasNutrientLoss,Gas nutrient loss,NOx-N STD g/ha/day,Greenhouse gasses - Nitric oxide per day - standard deviation,NUMERIC,NA,g/ha/day,NA,-100,10000,NA,N,Y
+MeasGasNutrientLoss,Gas nutrient loss,N2-N STD g/ha/day,Denitrification - Nitrogen per day - standard deviation,NUMERIC,NA,g/ha/day,NA,-100,10000,NA,N,Y
+MeasGasNutrientLoss,Gas nutrient loss,N2O-N STD kg/ha,Denitrification - Nitrous oxide per day - standard deviation,NUMERIC,NA,kg/ha,NA,-100,10000,NA,N,Y
+MeasGasNutrientLoss,Gas nutrient loss,NH3-N STD kg/ha/day,Ammonia volatilization per day - standard deviation,NUMERIC,NA,kg/ha/day,NA,-10000,50000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasWaterQualityConc,Water erosion and leaching concentration,Date,Date the harvest event occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,Y,N
+MeasWaterQualityConc,Water erosion and leaching concentration,Time,Time that the harvest event occurred,CHARACTER,NA,NA,hr/min/sec,0:00:00,23:59:59,NA,Y,N
+MeasWaterQualityConc,Water erosion and leaching concentration,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasWaterQualityConc,Water erosion and leaching concentration,Growth Stage,Growth stage,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasWaterQualityConc,Water erosion and leaching concentration,Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasWaterQualityConc,Water erosion and leaching concentration,Sampling Start-Stop Interval,Sampling Start-Stop Interval,CHARACTER,NA,NA,NA,NA,NA,Start | Stop-Start | Stop,Y,N
+MeasWaterQualityConc,Water erosion and leaching concentration,Model if simulated ,Model used if data are simulated. All data are assumed to be observed if blank.,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Surface or Leaching,Surface or Leaching,CHARACTER,NA,NA,NA,NA,NA,Surface | Leaching,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Sampling Depth cm,"Entered if Leaching is chosen from the previous field. If data are simulated a model will be entered. If the data are observed, this will be blank.",CHARACTER,cm,NA,NA,0,200,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Losses or Deposition,Losses or Deposition,CHARACTER,NA,NA,NA,NA,NA,Losses | Deposition,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Erosion Method ,Erosion Method ,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Erosion kg (sediment),Erosion kg (sediment),NUMERIC,kg,NA,NA,0,10000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Erosion Total suspended solids kg,Erosion Total suspended solids kg,NUMERIC,kg,NA,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Erosion Total solids kg,Erosion Total solids kg,NUMERIC,kg,NA,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Soil organic matter mg SOM/L,Soil organic matter mg SOM/L,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Soil organic carbon mg C/L,Soil organic carbon mg C/L,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Water mm,Water mm,NUMERIC,NA,mm,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,mg total N/L,Nitrogen,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,mg Total P/L,Phosphorus,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,mg NH4-N/L,Ammonium,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,mg NO3-N/L,Nitrate,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Total Dissolved N mg/L,Total Dissolved nitrogen,NUMERIC,NA,mg/L,NA,NA,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Total Dissolved mg P/L,Total Dissolved phosphorus,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,mg Cl/L,Chlorine,NUMERIC,NA,mg/L,NA,NA,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,pH,pH level,NUMERIC,NA,NA,NA,0,14,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,EC mS/cm,Conductivity,NUMERIC,NA,mS/cm,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved mg K/L,Dissolved potassium,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved mg S/L,Dissolved sulfur,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved mg Ca/L,Dissolved calcium,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved mg Mg/L,Dissolved magnesium,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved ug Cu/L,Dissolved cppper,NUMERIC,NA,ug/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved ug Fe/L,Dissolved iron,NUMERIC,NA,ug/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved ug Mn/L,Dissolved manganese,NUMERIC,NA,ug/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved ug Zn/L,Dissolved zinc,NUMERIC,NA,ug/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved ug B/L,Dissolved boron,NUMERIC,NA,ug/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved ug Mo/L,Dissolved molybdenum,NUMERIC,NA,ug/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved mg Al/L,Dissolved aluminum,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved mg Na/L,Dissolved sodium,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved mg Si/L,Dissolved silicon,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Erosion kg (sediment) STD,Erosion kg (sediment) - standard deviation,NUMERIC,kg,NA,NA,0,10000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Erosion Total suspended solids kg STD,Erosion Total suspended solids kg - standard deviation,NUMERIC,kg,NA,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Erosion Total solids kg STD,Erosion Total solids kg - standard deviation,NUMERIC,kg,NA,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Soil organic matter mg SOM/L STD,Soil organic matter mg SOM/L - standard deviation,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Soil organic carbon mg C/L STD,Soil organic carbon mg C/L - standard deviation,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Water mm STD,Water mm - standard deviation,NUMERIC,NA,mm,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,mg total N/L STD,Nitrogen - standard deviation,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,mg total P/L STD,Phosphorus - standard deviation,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,mg NH4-N/L STD,Ammonium - standard deviation,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,mg NO3-N/L STD,Nitrate - standard deviation,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Total Dissolved N mg N/L STD,Total Dissolved nitrogen - standard deviation,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Total Dissolved P mg P/L STD,Total Dissolved phosphorus - standard deviation,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,mg total Cl/L STD,Chlorine - standard deviation,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,pH STD,pH level - standard deviation,NUMERIC,NA,NA,NA,0,3,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,EC mS/cm STD,Conductivity - standard deviation,NUMERIC,NA,mS/cm,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved mg K/L STD,Dissolved potassium - standard deviation,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved mg S/L STD,Dissolved sulfur - standard deviation,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved mg Ca/L STD,Dissolved calcium - standard deviation,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved mg Mg/L,Dissolved magnesium - standard deviation,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved ug Cu/L,Dissolved cppper - standard deviation,NUMERIC,NA,ug/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved ug Fe/L,Dissolved iron - standard deviation,NUMERIC,NA,ug/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved ug Mn/L,Dissolved manganese - standard deviation,NUMERIC,NA,ug/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved ug Zn/L,Dissolved zinc - standard deviation,NUMERIC,NA,ug/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved ug B/L,Dissolved boron - standard deviation,NUMERIC,NA,ug/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved ug Mo/L,Dissolved molybdenum - standard deviation,NUMERIC,NA,ug/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved mg Al/L,Dissolved aluminum - standard deviation,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved mg Na/L,Dissolved sodium - standard deviation,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityConc,Water erosion and leaching concentration,Dissolved mg Si/L,Dissolved silicon - standard deviation,NUMERIC,NA,mg/L,NA,0,1000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasWaterQualityArea,Water erosion and leaching per area,Date,Date the harvest event occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,Y,N
+MeasWaterQualityArea,Water erosion and leaching per area,Time,Time that the harvest event occurred,CHARACTER,NA,NA,NA,0:00:00,23:59:59,NA,Y,N
+MeasWaterQualityArea,Water erosion and leaching per area,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasWaterQualityArea,Water erosion and leaching per area,Growth Stage,Growth stage,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasWaterQualityArea,Water erosion and leaching per area,Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasWaterQualityArea,Water erosion and leaching per area,Sampling Start-Stop Interval,Sampling Start-Stop Interval,CHARACTER,NA,NA,NA,NA,NA,Start | Stop-Start | Stop,Y,N
+MeasWaterQualityArea,Water erosion and leaching per area,Model if simulated ,Model used if data are simulated. All data are assumed to be observed if blank.,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Surface or Leaching,Surface or Leaching,CHARACTER,NA,NA,NA,NA,NA,Surface | Leaching,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Sampling Depth cm,"Entered if Leaching is chosen from the previous field. If data are simulated a model will be entered. If the data are observed, this will be blank.",CHARACTER,cm,NA,NA,0,200,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Losses or Deposition,Losses or Deposition,CHARACTER,NA,NA,NA,NA,NA,Losses | Deposition,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Erosion Method ,Erosion Method ,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Erosion t (sediment)/ha,Sediment erosion,NUMERIC,NA,t/ha,NA,0,500,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Erosion Total suspended solids t/ha,Total suspended solids erosion,NUMERIC,NA,t/ha,NA,0,1000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Erosion Total solids t/ha,Total solids erosion,NUMERIC,NA,t/ha,NA,0,1000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Soil organic matter kg/ha,Soil organic matter,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Soil organic carbon kg C/ha,Soil organic carbon,NUMERIC,NA,kg C/ha,NA,0,1000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Water mm,Water,NUMERIC,mm,NA,NA,0,1000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,kg total N/ha,Total nitrogen,NUMERIC,NA,kg N/ha,NA,0,500,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,kg total P/ha,Total phosphorus,NUMERIC,NA,kg P/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,kg NH4-N/ha,Total ammonium,NUMERIC,NA,kg NH4-N/ha,NA,0,500,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,kg NO3-N/ha,Total nitrate,NUMERIC,NA,kg NO3-N/ha,NA,0,500,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Total Dissolved N kg N/ha,Total dissolved nitrogen,NUMERIC,NA,kg N/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Total Dissolved P kg P/ha,Total dissolved phosphorus,NUMERIC,NA,kg P/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,kg total Cl/ha,Total chlorine,NUMERIC,NA,kg Cl/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,pH,pH level,NUMERIC,NA,NA,NA,0,14,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,EC mS/cm,Conductivity,NUMERIC,NA,m/cm,NA,0,1000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved kg K/ha,Dissolved potassium,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved kg S/ha,Dissolved sulfur,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved kg Ca/ha,Dissolved calcium,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved kg Mg/ha,Dissolved magnesium,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved g Cu/ha,Dissolved copper,NUMERIC,NA,g/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved g Fe/ha,Dissolved iron,NUMERIC,NA,g/ha,NA,0,2000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved g Mn/ha,Dissolved manganese,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved g Zn/ha,Dissolved zinc,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved g B/ha,Dissolved boron,NUMERIC,NA,g/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved g Mo/ha,Dissolved molybdenum,NUMERIC,NA,g/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved kg Al/ha,Dissolved aluminum,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved kg Na/ha,Dissolved sodium,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved kg Si/ha,Dissolved Silicon,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Erosion t (sediment)/ha STD,Sediment erosion - standard deviation,NUMERIC,NA,t/ha,NA,0,500,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Erosion Total suspended solids t/ha STD,Total suspended solids erosion - standard deviation,NUMERIC,NA,t/ha,NA,0,1000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Erosion Total solids t/ha STD,Total solids erosion - standard deviation,NUMERIC,NA,t/ha,NA,0,1000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Soil organic matter kg/ha STD,Soil organic matter - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Soil organic carbon kg C/ha STD,Soil organic carbon - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Water mm STD,Water - standard deviation,NUMERIC,mm,NA,NA,0,1000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,kg total N/ha STD,Total nitrogen - standard deviation,NUMERIC,NA,kg/ha,NA,0,500,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,kg total P/ha STD,Total phosphorus - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,kg NH4-N/ha STD,Total ammonium - standard deviation,NUMERIC,NA,kg/ha,NA,0,500,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,kg NO3-N/ha STD,Total nitrate - standard deviation,NUMERIC,NA,kg/ha,NA,0,500,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Total Dissolved N kg N/ha STD,Total dissolved nitrogen - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Total Dissolved P kg P/ha STD,Total dissolved phosphorus - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,kg total Cl/ha STD,Total chlorine - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,pH STD,pH level - standard deviation,NUMERIC,NA,NA,NA,0,3,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,EC mS/cm STD,Conductivity - standard deviation,NUMERIC,NA,NA,NA,0,1000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved kg K/ha STD,Dissolved potassium - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved kg S/ha STD,Dissolved sulfur - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved kg Ca/ha STD,Dissolved calcium - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved kg Mg/ha STD,Dissolved magnesium - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved g Cu/ha STD,Dissolved copper - standard deviation,NUMERIC,NA,g/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved g Fe/ha STD,Dissolved iron - standard deviation,NUMERIC,NA,g/ha,NA,0,2000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved g Mn/ha STD,Dissolved manganese - standard deviation,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved g Zn/ha STD,Dissolved zinc - standard deviation,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved g B/ha STD,Dissolved boron - standard deviation,NUMERIC,NA,g/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved g Mo/ha STD,Dissolved molybdenum - standard deviation,NUMERIC,NA,g/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved kg Al/ha STD,Dissolved aluminum - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved kg Na/ha STD,Dissolved sodium - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWaterQualityArea,Water erosion and leaching per area,Dissolved kg Si/ha STD,Dissolved Silicon - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasPlantMonitoring,Plant nutrient monitoring,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasPlantMonitoring,Plant nutrient monitoring,Date,Date the harvest event occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,Y,N
+MeasPlantMonitoring,Plant nutrient monitoring,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasPlantMonitoring,Plant nutrient monitoring,Sample Depth Upper cm,Upper soil depth of the sample,NUMERIC,cm,NA,NA,0,100,NA,Y,N
+MeasPlantMonitoring,Plant nutrient monitoring,Sample Depth Lower cm,Lower soil depth of the sample,NUMERIC,cm,NA,NA,0,100,NA,Y,N
+MeasPlantMonitoring,Plant nutrient monitoring,Growth Stage,Growth stage,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasPlantMonitoring,Plant nutrient monitoring,Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasPlantMonitoring,Plant nutrient monitoring,Model if simulated ,Model used if data are simulated. All data are assumed to be observed if blank.,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasPlantMonitoring,Plant nutrient monitoring,Test Value,Test Value,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasPlantMonitoring,Plant nutrient monitoring,Test Units,Test Units,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasPlantMonitoring,Plant nutrient monitoring,Crop Monitoring Test,Crop Monitoring Test,CHARACTER,NA,NA,NA,NA,NA,Leaf chlorophyll meter – LCM | N Reflectance Index –NRI | Normalized Difference Vegetation Index – NDVI | N Sufficiency Index – NSI | Leaf Area Index – LAI | Modified Chlorophyll Absorptance Reflectance Index – MCARI | Green Normalized Difference Vegetation Index – GNDVI | Pre-Sidedress Soil Nitrate Test (PSNT),N,Y
+MeasPlantMonitoring,Plant nutrient monitoring,Test Value STD,Test Value - standard deviation,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasCropForageQuality,Crop forage quality,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasCropForageQuality,Crop forage quality,Date,Date the harvest event occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,Y,N
+MeasCropForageQuality,Crop forage quality,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasCropForageQuality,Crop forage quality,Growth Stage,Growth stage,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasCropForageQuality,Crop forage quality,Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasCropForageQuality,Crop forage quality,Plant Fraction,What was harvested,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasCropForageQuality,Crop forage quality,Model if simulated ,Model used if data are simulated. All data are assumed to be observed if blank.,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasCropForageQuality,Crop forage quality,Value,Value,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasCropForageQuality,Crop forage quality,Unit,Unit,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasCropForageQuality,Crop forage quality,Chemical Compound,Chemical Compound,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasCropForageQuality,Crop forage quality,Value STD,Value - standard deviation,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasNutrientCycling,Nutrient cycling,Date,Date the harvest event occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,Y,N
+MeasNutrientCycling,Nutrient cycling,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasNutrientCycling,Nutrient cycling,Growth Stage,Growth stage,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasNutrientCycling,Nutrient cycling,Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasNutrientCycling,Nutrient cycling,Harvested Fraction,What was harvested from experimental unit (this describes residue removal treatment). Percent fractions removed are assumed to be approximations.,CHARACTER,NA,NA,NA,NA,NA,"50% removal of aboveground biomass | All aboveground biomass | Crop residue | Grain| Grain, 100% stover | Grain, 50% stover | Grain, 75% stover | Grain, Cobs | Grain, Cobs, High Cut | Grain, stover in 100% of rows | Grain, stover in 25% of rows | Grain, stover in 50% of rows | Grain, stover in 75% of rows | Grain, Straw | Lint | None",Y,N
+MeasNutrientCycling,Nutrient cycling,Model if simulated ,Model used if data are simulated. All data are assumed to be observed if blank.,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Corn Ear Height cm,The height of the base of the ear above the ground,NUMERIC,cm,NA,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Above G Biomass kg/ha,"Above ground biomass (grain plus leaves, stems, cobs, etc.). Above Ground Biomass includes grain at 0% moisture. (The total of what was removed and what remains in the field)",NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Unit Grain Weight mg,Grain (kernel) weight - grain mass at 0% moisture.,NUMERIC,NA,mg/kernel,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain Dry Matt kg/ha,Harvested (dry) grain yield - grain mass at 0% moisture.,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain Moist %,Grain percent moisture at time of harvest (crop specific),NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain C kgC/ha,Carbon content of harvested grain,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain N kgN/ha,Nitrogen content of harvested grain,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain P kgP/ha,Phosphorus content of harvested grain,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain K kgK/ha,Potassium content of harvested grain,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain S kgS/ha,Sulfur content of harvested grain,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain Ca kgCa/ha,Calcium content of harvested grain,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain Mg kgMg/ha,Magnesium content of harvested grain,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain Cu gCu/ha,Copper content of harvested grain,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain Fe gFe/ha,Iron content of harvested grain,NUMERIC,NA,g/ha,NA,0,5000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain Mn gMn/ha,Manganese content of harvested grain,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain Zn gZn/ha,Zinc content of harvested grain,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain B gB/ha,Boron content of harvested grain,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain Mo gMo/ha,Molybdenum content of harvested grain,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv NonGrain Bio kg/ha,Mass of dried harvested residue,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res Moist %,Percent moisture of harvested residue at harvest,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res C kgC/ha,Carbon content of the harvested residue,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res N kgN/ha,Nitrogen content of the harvested residue,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res P kgP/ha,Phosphorus content of the harvested residue,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res K kgK/ha,Potassium content of the harvested residue,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res S kgS/ha,Sulfur content of the harvested residue,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res Ca kgCa/ha,Calcium content of the harvested residue,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res Mg kgMg/ha,Magnesium content of the harvested residue,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res Cu gCu/ha,Copper content of the harvested residue,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res Fe gFe/ha,Iron content of the harvested residue,NUMERIC,NA,g/ha,NA,0,5000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res Mn gMn/ha,Manganese content of the harvested residue,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res Zn gZn/ha,Zinc content of the harvested residue,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res B gB/ha,Boron content of the harvested residue,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res Mo gMo/ha,Molybdenum content of the harvested residue,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,NonHarv NonGrain Bio kg/ha,Mass of dried non-harvested residue (i.e. non-grain above ground plant material not removed during harvest event),NUMERIC,NA,NA,NA,0,50000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,NonHarv Res Moist %,Percent moisture of non-harvested residue,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,NonHarv Res C kgC/ha,Carbon content of the non-harvested residue,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,NonHarv Res N kgN/ha,Nitrogen content of the non-harvested residue,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res P kgP/ha,Phosphorus content of the non-harvested residue,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res K kgK/ha,Potassium content of the non-harvested residue,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res S kgS/ha,Sulfur content of the non-harvested residue,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res Ca kgCa/ha,Calcium content of the non-harvested residue,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res Mg kgMg/ha,Magnesium content of the non-harvested residue,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res Cu gCu/ha,Copper content of the non-harvested residue,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res Fe gFe/ha,Iron content of the non-harvested residue,NUMERIC,NA,g/ha,NA,0,5000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res Mn gMn/ha,Manganese content of the non-harvested residue,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res Zn gZn/ha,Zinc content of the non-harvested residue,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res B gB/ha,Boron content of the non-harvested residue,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res Mo gMo/ha,Molybdenum content of the non-harvested residue,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Corn Ear Height STD,The height of the base of the ear above the ground - standard deviation,NUMERIC,cm,NA,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Above Ground Biomass STD,"Above ground biomass (grain plus leaves, stems, cobs, etc.). Above Ground Biomass includes grain at 0% moisture. (The total of what was removed and what remains in the field) - standard deviation",NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Unit Grain Weight STD,Grain (kernel) weight - grain mass at 0% moisture. - standard deviation,NUMERIC,NA,mg/kernel,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain DryMatter STD,Harvested (dry) grain yield - grain mass at 0% moisture. - standard deviation,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain MoisturePct STD,Grain percent moisture at time of harvest (crop specific) - standard deviation,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain C STD,Carbon content of harvested grain - standard deviation,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain N STD,Nitrogen content of harvested grain - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain P STD,Phosphorus content of harvested grain - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain K STD,Potassium content of harvested grain - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain S STD,Sulfur content of harvested grain - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain Ca STD,Calcium content of harvested grain - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain Mg STD,Magnesium content of harvested grain - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain Cu STD,Copper content of harvested grain - standard deviation,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain Fe STD,Iron content of harvested grain - standard deviation,NUMERIC,NA,g/ha,NA,0,5000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain Mn STD,Manganese content of harvested grain - standard deviation,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain Zn STD,Zinc content of harvested grain - standard deviation,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain B STD,Boron content of harvested grain - standard deviation,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Grain Mo STD,Molybdenum content of harvested grain - standard deviation,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res DryMatter STD,Mass of dried harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,50000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,HarvRes MoisturePct STD,Percent moisture of harvested residue at harvest - standard deviation,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res C STD,Carbon content of the harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res N STD,Nitrogen content of the harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res P STD,Phosphorus content of the harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res K STD,Potassium content of the harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res S STD,Sulfur content of the harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res Ca STD,Calcium content of the harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res Mg STD,Magnesium content of the harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res Cu STD,Copper content of the harvested residue - standard deviation,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res Fe STD,Iron content of the harvested residue - standard deviation,NUMERIC,NA,g/ha,NA,0,5000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res Mn STD,Manganese content of the harvested residue - standard deviation,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res Zn STD,Zinc content of the harvested residue - standard deviation,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res B STD,Boron content of the harvested residue - standard deviation,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,Harv Res Mo STD,Molybdenum content of the harvested residue - standard deviation,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res DryMatter STD,Mass of dried non-harvested residue (i.e. non-grain above ground plant material not removed during harvest event) - standard deviation,NUMERIC,NA,NA,NA,0,50000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res MoisturePct STD,Percent moisture of non-harvested residue - standard deviation,NUMERIC,%,NA,NA,0,100,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res C STD,Carbon content of the non-harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,25000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res N STD,Nitrogen content of the non-harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res P STD,Phosphorus content of the non-harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res K STD,Potassium content of the non-harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res S STD,Sulfur content of the non-harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res Ca STD,Calcium content of the non-harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res Mg STD,Magnesium content of the non-harvested residue - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res Cu STD,Copper content of the non-harvested residue - standard deviation,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res Fe STD,Iron content of the non-harvested residue - standard deviation,NUMERIC,NA,g/ha,NA,0,5000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res Mn STD,Manganese content of the non-harvested residue - standard deviation,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res Zn STD,Zinc content of the non-harvested residue - standard deviation,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res B STD,Boron content of the non-harvested residue - standard deviation,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasNutrientCycling,Nutrient cycling,nonHarv Res Mo STD,Molybdenum content of the non-harvested residue - standard deviation,NUMERIC,NA,g/ha,NA,0,500,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasWindErosionConc,Wind erosion concentration,Date,Date the harvest event occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,Y,N
+MeasWindErosionConc,Wind erosion concentration,Time,Date the harvest event occurred,CHARACTER,NA,NA,NA,0:00:00,23:59:59,NA,Y,N
+MeasWindErosionConc,Wind erosion concentration,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasWindErosionConc,Wind erosion concentration,Growth Stage,Growth stage,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasWindErosionConc,Wind erosion concentration,Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasWindErosionConc,Wind erosion concentration,Sampling Start-Stop Interval,Sampling Start-Stop Interval,CHARACTER,NA,NA,NA,NA,NA,Start | Stop-Start | Stop,Y,N
+MeasWindErosionConc,Wind erosion concentration,Model if simulated,Model used if data are simulated. All data are assumed to be observed if blank.,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,Method,Nutrient transport method,CHARACTER,NA,NA,NA,NA,NA,Cesium-137 | Lead-210 | Beryllium-7,N,Y
+MeasWindErosionConc,Wind erosion concentration,Losses or Deposition,Losses or Deposition,CHARACTER,NA,NA,NA,NA,NA,Losses | Deposition,N,Y
+MeasWindErosionConc,Wind erosion concentration,Soil t,Soil t,NUMERIC,NA,NA,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,Soil organic matter mg SOM/kg,Soil organic matter,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,Soil organic carbon mg C/kg,Soil organic carbon,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,pH,pH level,NUMERIC,NA,NA,NA,0,14,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,EC mS/cm,Conductivity,NUMERIC,NA,mS/cm,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg N/kg,Nitrogen,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg NH4-N/kg,Ammonium,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg NO3-N/kg,Nitrate,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg P/kg,Phosphorus,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg K/kg,Potassium,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg S/kg,Sulfur,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg Ca/kg,Calcium,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg Mg/kg,Magnesium,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,ug Cu/kg,Copper,NUMERIC,NA,ug/kg,NA,0,100,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,ug Fe/kg,Iron,NUMERIC,NA,ug/kg,NA,0,2000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,ug Mn/kg,Manganese,NUMERIC,NA,ug/kg,NA,0,2000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,ug Zn/kg,Zinc,NUMERIC,NA,ug/kg,NA,0,2000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,ug B/kg,Boron,NUMERIC,NA,ug/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,ug Mo/kg,Molybdenum,NUMERIC,NA,ug/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg Al/kg,Aluminum,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg Na/kg,Sodium,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg Si/kg,Silicon,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,Soil t STD,Soil t - standard deviation,NUMERIC,NA,NA,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,Soil organic matter mg SOM/kg STD,Soil organic matter - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,Soil organic carbon mg C/kg STD,Soil organic carbon - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,pH STD,pH level - standard deviation,NUMERIC,NA,NA,NA,0,14,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,EC mS/cm STD,Conductivity - standard deviation,NUMERIC,NA,mS/cm,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg N/kg STD,Nitrogen - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg NH4-N/kg STD,Ammonium - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg NO3-N/kg STD,Nitrate - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg P/kg STD,Phosphorus - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg K/kg STD,Potassium - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg S/kg STD,Sulfur - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg Ca/kg STD,Calcium - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg Mg/kg STD,Magnesium - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,ug Cu/kg STD,Copper - standard deviation,NUMERIC,NA,ug/kg,NA,0,100,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,ug Fe/kg STD,Iron - standard deviation,NUMERIC,NA,ug/kg,NA,0,2000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,ug Mn/kg STD,Manganese - standard deviation,NUMERIC,NA,ug/kg,NA,0,2000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,ug Zn/kg STD,Zinc - standard deviation,NUMERIC,NA,ug/kg,NA,0,2000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,ug B/kg STD,Boron - standard deviation,NUMERIC,NA,ug/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,ug Mo/kg STD,Molybdenum - standard deviation,NUMERIC,NA,ug/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg Al/kg STD,Aluminum - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg Na/kg STD,Sodium - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionConc,Wind erosion concentration,mg Si/kg STD,Silicon - standard deviation,NUMERIC,NA,mg/kg,NA,0,1000,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasWindErosionArea,Wind erosion per area,Date,Date the harvest event occurred,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,Y,N
+MeasWindErosionArea,Wind erosion per area,Time,Date the harvest event occurred,CHARACTER,NA,NA,NA,0:00:00,23:59:59,NA,Y,N
+MeasWindErosionArea,Wind erosion per area,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasWindErosionArea,Wind erosion per area,Growth Stage,Growth stage,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasWindErosionArea,Wind erosion per area,Crop,Crop,CHARACTER,NA,NA,NA,NA,NA,NA,Y,N
+MeasWindErosionArea,Wind erosion per area,Sampling Start-Stop Interval,Sampling Start-Stop Interval,CHARACTER,NA,NA,NA,NA,NA,Start | Stop-Start | Stop,Y,N
+MeasWindErosionArea,Wind erosion per area,Model if simulated,Model used if data are simulated. All data are assumed to be observed if blank.,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,Method,Nutrient transport method,CHARACTER,NA,NA,NA,NA,NA,Cesium-137 | Lead-210 | Beryllium-7,N,Y
+MeasWindErosionArea,Wind erosion per area,Losses or Deposition,Losses or Deposition,CHARACTER,NA,NA,NA,NA,NA,Losses | Deposition,N,Y
+MeasWindErosionArea,Wind erosion per area,Soil t/ha,Soil t/ha,NUMERIC,NA,t/ha,NA,0,1000,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,Soil organic matter kg/ha,Soil organic matter,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,Soil organic carbon kg C/ha,Soil organic carbon,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,pH,pH,NUMERIC,NA,NA,NA,0,14,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,EC mS/cm,Conductivity,NUMERIC,NA,mS/cm,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg total N/ha,Total Nitrogen,NUMERIC,NA,kg/ha,NA,0,500,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg NH4-N/ha,Ammonium,NUMERIC,NA,kg/ha,NA,0,500,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg NO3-N/ha,Nitrate,NUMERIC,NA,kg/ha,NA,0,500,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg total P/ha,Phosphorus,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg K/ha,Potassium,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg S/ha,Sulfur,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg Ca/ha,Calcium,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg Mg/ha,Magnesium,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,g Cu/ha,Copper,NUMERIC,NA,g/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,g Fe/ha,Iron,NUMERIC,NA,g/ha,NA,0,2000,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,g Mn/ha,Manganese,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,g Zn/ha,Zinc,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,g B/ha,Boron,NUMERIC,NA,g/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,g Mo/ha,Molybdenum,NUMERIC,NA,g/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg Al/ha,Aluminum,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg Na/ha,Sodium,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg Si/ha,Silicon,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,Soil t/ha STD,Soil t/ha - standard deviation,NUMERIC,NA,t/ha,NA,0,1000,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,Soil organic matter kg/ha STD,Soil organic matter - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,Soil organic carbon kg C/ha STD,Soil organic carbon - standard deviation,NUMERIC,NA,kg/ha,NA,0,1000,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,pH STD,pH - standard deviation,NUMERIC,NA,NA,NA,0,14,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,EC mS/cm STD,Conductivity - standard deviation,NUMERIC,NA,mS/cm,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg total N/ha STD,Total Nitrogen - standard deviation,NUMERIC,NA,kg/ha,NA,0,500,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg NH4-N/ha STD,Ammonium - standard deviation,NUMERIC,NA,kg/ha,NA,0,500,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg NO3-N/ha STD,Nitrate - standard deviation,NUMERIC,NA,kg/ha,NA,0,500,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg total P/ha STD,Phosphorus - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg K/ha STD,Potassium - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg S/ha STD,Sulfur - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg Ca/ha STD,Calcium - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg Mg/ha STD,Magnesium - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,g Cu/ha STD,Copper - standard deviation,NUMERIC,NA,g/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,g Fe/ha STD,Iron - standard deviation,NUMERIC,NA,g/ha,NA,0,2000,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,g Mn/ha STD,Manganese - standard deviation,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,g Zn/ha STD,Zinc - standard deviation,NUMERIC,NA,g/ha,NA,0,1000,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,g B/ha STD,Boron - standard deviation,NUMERIC,NA,g/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,g Mo/ha STD,Molybdenum - standard deviation,NUMERIC,NA,g/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg Al/ha STD,Aluminum - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg Na/ha STD,Sodium - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasWindErosionArea,Wind erosion per area,kg Si/ha STD,Silicon - standard deviation,NUMERIC,NA,kg/ha,NA,0,100,NA,N,Y
+MeasSuppRes,Methods used - this describes the data collectd and included in the experimental unit and treatment information,Exp Unit ID,Unique experimental identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasSuppRes,Methods used - this describes the data collectd and included in the experimental unit and treatment information,Date,Date the sample was collected,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+MeasSuppRes,Methods used - this describes the data collectd and included in the experimental unit and treatment information,Treatment ID,Treatment identifier,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasSuppRes,Methods used - this describes the data collectd and included in the experimental unit and treatment information,What is Measured,Describes what is being measured,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+MeasSuppRes,Methods used - this describes the data collectd and included in the experimental unit and treatment information,Measurement Value,Notes the measurement value,CHARACTER,NA,NA,NA,0,10000000,NA,N,Y
+MeasSuppRes,Methods used - this describes the data collectd and included in the experimental unit and treatment information,Measurement Units,Notes the measurement units,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+AllCellComments,Comments that people looking at your data might want to read,Site ID,"A 2 digit state, 2 digit city/town code with up to 4 additional characters for unique experimental ID with no spaces or special characters.  Should be consistent with SiteID from previous pages.",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+AllCellComments,Comments that people looking at your data might want to read,Date,Date the comment was entered,DATE,NA,NA,mm/dd/yyyy,1/1/1900,now,NA,N,Y
+AllCellComments,Comments that people looking at your data might want to read,Sheet Name,Name of the worksheet where the data was found,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+AllCellComments,Comments that people looking at your data might want to read,Field Name,"The column heading, beneath which the data values are located.",CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+AllCellComments,Comments that people looking at your data might want to read,Reporting Person Name,Name of the person making this comment,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
+AllCellComments,Comments that people looking at your data might want to read,Comment,The relevant information pertaining to a particular data value.,CHARACTER,NA,NA,NA,NA,NA,NA,N,Y
