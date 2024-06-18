@@ -42,13 +42,21 @@ cap_ghg_data = cap_ghg %>%
 # create a list of unique identifiers
 identifiers = cap_ghg_data %>%
   select(Site, Experiment, Chamber) %>%
-  distinct()
+  distinct() %>%
+  # create two new columns for start and end date
+  mutate(`Start.Date` = as.Date(NA), 
+         `End.Date` = as.Date(NA),
+         `Number of Observations` = as.integer(NA))
 
 # for each unique identifier, calculate the mean and standard error of the gas fluxes
 for (i in 1:nrow(identifiers)) {
   # select data for the current identifier
   current_data = cap_ghg_data %>%
     filter(Site == identifiers$Site[i], Experiment == identifiers$Experiment[i], Chamber == identifiers$Chamber[i])
+  
+  identifiers$`Start.Date`[i] = min(current_data$date)
+  identifiers$`End.Date`[i] = max(current_data$date)
+  identifiers$`Number of Observations`[i] = nrow(current_data)
   
   # sort the data by date
   current_data = current_data %>%
@@ -237,3 +245,4 @@ for (i in 1:nrow(identifiers)) {
 
 # write the final output table to a CSV file
 write.csv(cap_gas_flux, "../../temp/cap_gas_emission.csv")
+write.csv(identifiers, "../../temp/cap_gas_emission_identifiers.csv")

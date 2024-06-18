@@ -49,6 +49,14 @@ Columns dictionary:
 
 
 
+## 2 N ca
+
+- manuer
+- fertilizer
+- legume: see paper soil
+
+
+
 ### GHG emissions
 
 Available results
@@ -87,6 +95,10 @@ Columns dictionary:
   - We have:
 
     <img src="./Jun6_12_Log.assets/image-20240613010032212.png" alt="image-20240613010032212" style="zoom: 50%;" />
+    
+    - for wheat bolinder
+    - make a list of available columns and document decisions
+    - a document of calculating methods
 
 - Different crops have different data availability for these measurements:
 
@@ -135,13 +147,19 @@ Current method: for example for corn
 
   - Here I used the spline interpolation model
 
+  - CO2 should not be so schocastic
+
+  - focus on N2O
+
     <img src="./Jun6_12_Log.assets/image-20240612170715930.png" alt="image-20240612170715930" style="zoom: 33%;" />
 
   - interpolate values for all days within time range
-
+  
   - sum and get the total emission
-
+  
   - not in years, but within a total time frame
+  
+  - also include a column indicating the number of measurement
 
 
 
@@ -152,3 +170,8 @@ Current method: for example for corn
 - Current method:
   - I kept paralleled results for all chamber positions for CAP
   - I merged all results for GraceNET
+
+
+
+## Tillage Update
+

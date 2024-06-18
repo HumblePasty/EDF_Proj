@@ -34,6 +34,13 @@ grace_ghg_identity = grace_ghg %>%
   select(SiteID, `Exp Unit ID`, `Treatment ID`, `Crop`, `Chamber Placement`) %>%
   unique()
 
+# create two new columns for the start date and end date
+grace_ghg_identity = grace_ghg_identity %>%
+  mutate(`Start Date` = as.Date(NA),
+         `End Date` = as.Date(NA),
+         `Number of Observations` = as.integer(NA))
+
+
 # for every identity, make estimates on the GHG emissions
 for (i in 1:nrow(grace_ghg_identity)) {
   # get the current identity
@@ -48,6 +55,12 @@ for (i in 1:nrow(grace_ghg_identity)) {
            # if Crop is not NA, use it as a filter
            if (!is.na(current_identity$Crop)) `Crop` == current_identity$Crop else TRUE,
            `Chamber Placement` == current_identity$`Chamber Placement`)
+  
+  # add the start date and end date to the identity list
+  grace_ghg_identity[i, ]$`Start Date` = as.Date(min(current_data$Date))
+  grace_ghg_identity[i, ]$`End Date` = as.Date(max(current_data$Date))
+  # add the number of observations
+  grace_ghg_identity[i, ]$`Number of Observations` = nrow(current_data)
   
   # get the chamber placement
   chamber_placements = unique(current_data$`Chamber Placement`)
@@ -147,5 +160,5 @@ for (i in 1:nrow(grace_ghg_identity)) {
 
 # export the final output table
 write_csv(gracenet_gas_flux, "../../temp/gracenet_gas_emission.csv")
-
+write_csv(grace_ghg_identity, "../../temp/gracenet_gas_emission_identity.csv")
 
