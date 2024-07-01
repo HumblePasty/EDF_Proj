@@ -24,6 +24,7 @@ cap_gas_flux = data.frame(
     `Chamber` = character(),
     `Crop` = character(),
     # numeric columns
+    `NumberofObservations` = numeric(),
     `CO2.Flux` = numeric(),
     `CO2.SE` = numeric(),
     `CH4.Flux` = numeric(),
@@ -169,18 +170,17 @@ for (i in 1:nrow(identifiers)) {
   
   # add the calculated values to the final output table
   # aggregate by each year
+  # get the date of the first observation
+  first_date = min(current_data$date)
   for (year in years$year) {
-    # create the time range for the current year
-    start_date = if (year == min(years)) {
-      as.Date(min(dates$date))
-    } else {
-      as.Date(paste(year, "-01-01", sep = ""))
-    }
-    end_date = if (year == max(years)) {
-      as.Date(max(dates$date))
-    } else {
-      as.Date(paste(year, "-12-31", sep = ""))
-    }
+    # the start date is the same date of the first observation in the current year
+    start_date = as.Date(paste(year, as.Date(first_date)$month, as.Date(first_date)$day, sep = "-"))
+    # the end date is the date before of the last observation in the next year
+    end_date = case_when(
+      year == max(years$year) ~ as.Date(paste(year, as.Date(max(dates$date))$month, as.Date(max(dates$date))$day, sep = "-"))
+      # else the end date is the date before of the first observation in the next year
+      .default = as.Date(paste(year + 1, as.Date(min(dates$date))$month, as.Date(min(dates$date))$day, sep = "-"))
+    )
     temp_time_range = paste(start_date, end_date, sep = "~")
     # filter the interpolated data within the current time range
     if (!is.na(CO2.Model)) {
@@ -231,6 +231,7 @@ for (i in 1:nrow(identifiers)) {
       `Time.Range` = temp_time_range,
       `Chamber` = identifiers$Chamber[i],
       `Crop` = NA,
+      `NumberofObservations` = identifiers$`Number of Observations`[i],
       `CO2.Flux` = CO2.Flux,
       `CO2.SE` = CO2.SE,
       `CH4.Flux` = CH4.Flux,
